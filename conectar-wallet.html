@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conectar Wallet - BlockHub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #013EFB;
+            --secondary-color: #90F209;
+            --dark-navy: #01112B;
+            --deep-black: #000000;
+            --almost-black: #0a0a0a;
+            --dark-charcoal: #1a1a1a;
+            --light-gray: #EBEBEB;
+            --glass-bg: rgba(235, 235, 235, 0.1);
+            --glass-border: rgba(235, 235, 235, 0.2);
+            --dark-glass: rgba(1, 17, 43, 0.3);
+            --text-light: rgba(235, 235, 235, 0.95);
+            --text-muted: rgba(235, 235, 235, 0.75);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto Mono', monospace;
+            background: linear-gradient(135deg, var(--deep-black) 0%, var(--almost-black) 25%, var(--dark-charcoal) 40%, var(--dark-navy) 70%, var(--primary-color) 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: var(--text-light);
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, var(--deep-black) 0%, var(--almost-black) 20%, var(--dark-charcoal) 35%, var(--dark-navy) 55%, var(--primary-color) 75%, var(--secondary-color) 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Floating cubes animation */
+        .bg-cube {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            opacity: 0.4;
+            animation: bgCubeFloat 8s ease-in-out infinite;
+        }
+
+        .bg-cube:nth-child(1) {
+            top: 10%;
+            left: 15%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            animation-delay: 0s;
+            box-shadow: 0 8px 25px rgba(1, 62, 251, 0.3);
+        }
+
+        .bg-cube:nth-child(2) {
+            top: 60%;
+            right: 20%;
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            animation-delay: 2s;
+            box-shadow: 0 8px 25px rgba(144, 242, 9, 0.3);
+            width: 80px;
+            height: 80px;
+        }
+
+        .bg-cube:nth-child(3) {
+            bottom: 20%;
+            left: 25%;
+            background: linear-gradient(135deg, var(--dark-navy), var(--primary-color));
+            animation-delay: 4s;
+            box-shadow: 0 8px 25px rgba(1, 17, 43, 0.3);
+            width: 50px;
+            height: 50px;
+        }
+
+        @keyframes bgCubeFloat {
+            0%, 100% { 
+                transform: translateY(0px) rotate(0deg) scale(1);
+                opacity: 0.4;
+            }
+            25% { 
+                transform: translateY(-15px) rotate(45deg) scale(1.1);
+                opacity: 0.6;
+            }
+            50% { 
+                transform: translateY(-30px) rotate(90deg) scale(0.9);
+                opacity: 0.3;
+            }
+            75% { 
+                transform: translateY(-15px) rotate(135deg) scale(1.05);
+                opacity: 0.5;
+            }
+        }
+
+        /* Glassmorphism Components */
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .glass-dark {
+            background: var(--dark-glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            width: 90%;
+            max-width: 1200px;
+            border-radius: 20px;
+            padding: 12px 24px;
+            transition: all 0.3s ease;
+            animation: slideDown 1s ease;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateX(-50%) translateY(-100px); opacity: 0; }
+            to { transform: translateX(-50%) translateY(0); opacity: 1; }
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo .logo-image {
+            height: auto;
+            width: auto;
+            max-width: 150px;
+            object-fit: contain;
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+
+        .nav-logo .logo-image:hover {
+            transform: scale(1.05);
+            filter: brightness(1.1);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .nav-menu a:hover {
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Main Container */
+        .main-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 120px 2rem 60px;
+        }
+
+        .wallet-card {
+            max-width: 600px;
+            width: 100%;
+            border-radius: 30px;
+            padding: 3rem;
+            text-align: center;
+            animation: fadeInUp 1s ease 0.5s both;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .wallet-logo {
+            margin-bottom: 2rem;
+        }
+
+        .wallet-logo-img {
+            height: 120px;
+            width: auto;
+            max-width: 300px;
+            object-fit: contain;
+            filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.4));
+            animation: logoFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .wallet-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: white;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .highlight {
+            background: linear-gradient(45deg, var(--secondary-color), white);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+
+        .wallet-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            line-height: 1.6;
+        }
+
+        /* Wallet Status */
+        .wallet-status {
+            background: var(--dark-glass);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .status-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .status-text {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .wallet-address {
+            font-family: 'Roboto Mono', monospace;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1rem;
+            border-radius: 10px;
+            word-break: break-all;
+            border: 1px solid rgba(144, 242, 9, 0.3);
+            color: var(--secondary-color);
+        }
+
+        .network-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .network-item {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .network-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .network-value {
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 16px 32px;
+            border-radius: 50px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 1.1rem;
+            margin: 0.5rem;
+            min-width: 200px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: var(--light-gray);
+            box-shadow: 0 10px 30px rgba(1, 62, 251, 0.4);
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(1, 62, 251, 0.5), 0 0 30px rgba(144, 242, 9, 0.3);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(144, 242, 9, 0.1);
+            border-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        /* Loading Spinner */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--secondary-color);
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 0.5rem;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Status Messages */
+        .status-message {
+            padding: 1rem;
+            border-radius: 15px;
+            margin: 1rem 0;
+            font-weight: 500;
+            border: 2px solid;
+        }
+
+        .status-success {
+            background: rgba(40, 167, 69, 0.2);
+            border-color: rgba(40, 167, 69, 0.5);
+            color: #28a745;
+        }
+
+        .status-error {
+            background: rgba(220, 53, 69, 0.2);
+            border-color: rgba(220, 53, 69, 0.5);
+            color: #dc3545;
+        }
+
+        .status-info {
+            background: rgba(144, 242, 9, 0.2);
+            border-color: rgba(144, 242, 9, 0.5);
+            color: var(--secondary-color);
+        }
+
+        .status-warning {
+            background: rgba(255, 193, 7, 0.2);
+            border-color: rgba(255, 193, 7, 0.5);
+            color: #ffc107;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .wallet-card {
+                padding: 2rem 1rem;
+                margin: 1rem;
+            }
+            
+            .wallet-title {
+                font-size: 2rem;
+            }
+            
+            .btn {
+                width: 100%;
+                margin: 0.5rem 0;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
+            
+            .navbar {
+                width: 95%;
+                padding: 12px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation">
+        <div class="bg-cube"></div>
+        <div class="bg-cube"></div>
+        <div class="bg-cube"></div>
+        </div>
+
+    <!-- Navigation -->
+    <nav class="navbar glass">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="src/assets/BLANCO.png" alt="BlockHub Logo" class="logo-image">
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="editor-archivos.html">Editor</a></li>
+                <li><a href="colaboradores.html">Colaboradores</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <div class="wallet-card glass-dark">
+            <div class="wallet-logo">
+                <img src="src/assets/BLANCO.png" alt="BlockHub Logo" class="wallet-logo-img">
+            </div>
+
+            <h1 class="wallet-title">Conecta tu <span class="highlight">WALLET</span></h1>
+            <p class="wallet-subtitle">Conecta tu wallet de Ethereum para acceder a las funcionalidades de BlockHub y crear repositorios descentralizados.</p>
+
+            <!-- Wallet Status Display -->
+            <div class="wallet-status">
+                <div id="walletStatus">
+                    <div class="status-icon">🦊</div>
+                    <div class="status-text">Wallet no conectado</div>
+                    <div class="status-text" style="font-size: 0.9rem; color: var(--text-muted);">
+                        Conecta MetaMask para comenzar
+                    </div>
+                </div>
+            </div>
+
+            <!-- Status Messages -->
+                <div id="statusMessage" style="display: none;"></div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button id="connectBtn" class="btn btn-primary">
+                    🦊 Conectar MetaMask
+                    </button>
+                <button id="installBtn" class="btn btn-secondary" style="display: none;">
+                    📥 Instalar MetaMask
+                </button>
+                <button id="refreshBtn" class="btn btn-secondary">
+                    🔄 Verificar Conexión
+                </button>
+                <button id="editorBtn" class="btn btn-secondary" disabled>
+                    📝 Ir al Editor
+                </button>
+                <button id="collaboratorsBtn" class="btn btn-secondary" onclick="goToCollaborators()">
+                    🤝 Colaboradores
+                    </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+    <script src="web3-contract-integration.js"></script>
+
+    <script>
+        // Variables globales
+        let web3 = null;
+        let currentAccount = null;
+        let isConnected = false;
+        let chainId = null;
+
+        // DOM Elements
+        const connectBtn = document.getElementById('connectBtn');
+        const installBtn = document.getElementById('installBtn');
+        const refreshBtn = document.getElementById('refreshBtn');
+        const editorBtn = document.getElementById('editorBtn');
+        const walletStatus = document.getElementById('walletStatus');
+        const statusMessage = document.getElementById('statusMessage');
+
+        // Utility Functions
+        function showStatus(message, type = 'info') {
+            statusMessage.innerHTML = message;
+            statusMessage.className = `status-message status-${type}`;
+            statusMessage.style.display = 'block';
+            
+            if (type !== 'error') {
+                setTimeout(() => {
+                    statusMessage.style.display = 'none';
+                }, 5000);
+            }
+        }
+
+        function formatAddress(address) {
+            if (!address) return '';
+            return `${address.substring(0, 6)}...${address.substring(address.length - 4)}`;
+        }
+
+        function getNetworkName(chainId) {
+            const networks = {
+                // Ethereum Networks
+                '0x1': 'Ethereum Mainnet',
+                '0x3': 'Ropsten (Deprecated)',
+                '0x4': 'Rinkeby (Deprecated)', 
+                '0x5': 'Goerli Testnet',
+                
+                // Layer 2 Networks
+                '0x89': 'Polygon',
+                '0xa4b1': 'Arbitrum One',
+                '0xa': 'Optimism',
+                '0x66eee': 'Arbitrum Sepolia',
+                
+                // Other Networks
+                '0xa86a': 'Avalanche C-Chain',
+                '0x38': 'BSC (Binance Smart Chain)'
+            };
+            return networks[chainId] || `Red desconocida (${chainId})`;
+        }
+
+        async function updateWalletStatus() {
+            if (isConnected && currentAccount) {
+                try {
+                    const balance = await web3.eth.getBalance(currentAccount);
+                    const balanceEth = web3.utils.fromWei(balance, 'ether');
+                    const networkName = getNetworkName(chainId);
+
+                    walletStatus.innerHTML = `
+                        <div class="status-icon">✅</div>
+                        <div class="status-text">Wallet Conectado</div>
+                        <div class="wallet-address">${currentAccount}</div>
+                        <div class="network-info">
+                            <div class="network-item">
+                                <div class="network-label">Red</div>
+                                <div class="network-value">${networkName}</div>
+                            </div>
+                            <div class="network-item">
+                                <div class="network-label">Balance</div>
+                                <div class="network-value">${parseFloat(balanceEth).toFixed(4)} ETH</div>
+                            </div>
+                            <div class="network-item">
+                                <div class="network-label">Dirección</div>
+                                <div class="network-value">${formatAddress(currentAccount)}</div>
+                            </div>
+                    </div>
+                `;
+
+                    connectBtn.innerHTML = '✅ Conectado';
+                    connectBtn.disabled = true;
+                    editorBtn.disabled = false;
+
+                } catch (error) {
+                    console.error('Error obteniendo datos del wallet:', error);
+                    showStatus('Error obteniendo información del wallet', 'error');
+                }
+            } else {
+                walletStatus.innerHTML = `
+                    <div class="status-icon">🦊</div>
+                    <div class="status-text">Wallet no conectado</div>
+                    <div class="status-text" style="font-size: 0.9rem; color: var(--text-muted);">
+                        Conecta MetaMask para comenzar
+                </div>
+                `;
+
+                connectBtn.innerHTML = '🦊 Conectar MetaMask';
+                connectBtn.disabled = false;
+                editorBtn.disabled = true;
+            }
+        }
+
+        // MetaMask Detection
+        function checkMetaMaskInstallation() {
+            if (typeof window.ethereum !== 'undefined') {
+                console.log('✅ MetaMask detectado');
+                installBtn.style.display = 'none';
+                connectBtn.style.display = 'inline-block';
+                return true;
+            } else {
+                console.log('❌ MetaMask no instalado');
+                showStatus('MetaMask no está instalado. Por favor, instálalo para continuar.', 'warning');
+                installBtn.style.display = 'inline-block';
+                connectBtn.style.display = 'none';
+                return false;
+            }
+        }
+
+        // Connect Wallet Function
+        async function connectWallet() {
+            if (!checkMetaMaskInstallation()) {
+                return;
+            }
+
+            try {
+                connectBtn.disabled = true;
+                connectBtn.innerHTML = '<span class="loading"></span>Conectando...';
+                showStatus('🔄 Conectando con MetaMask...', 'info');
+
+                // Request account access
+                const accounts = await window.ethereum.request({
+                    method: 'eth_requestAccounts'
+                });
+
+                if (accounts.length === 0) {
+                    throw new Error('No se seleccionó ninguna cuenta');
+                }
+
+                // Initialize Web3
+                web3 = new Web3(window.ethereum);
+                currentAccount = accounts[0];
+                isConnected = true;
+
+                // Get chain ID
+                chainId = await window.ethereum.request({ method: 'eth_chainId' });
+
+                // Initialize BlockHub Web3 Service
+                if (window.blockHubWeb3) {
+                    try {
+                        await window.blockHubWeb3.initializeWeb3();
+                        console.log('✅ BlockHub Web3 Service inicializado');
+            } catch (error) {
+                        console.warn('⚠️ Error inicializando BlockHub Service:', error.message);
+                    }
+                }
+
+                await updateWalletStatus();
+                showStatus('✅ Wallet conectado exitosamente', 'success');
+
+                console.log('🎉 Conexión exitosa:', {
+                    account: currentAccount,
+                    chainId: chainId,
+                    network: getNetworkName(chainId)
+                });
+
+            } catch (error) {
+                console.error('❌ Error conectando wallet:', error);
+                
+                if (error.code === 4001) {
+                    showStatus('Conexión cancelada por el usuario', 'warning');
+                } else if (error.code === -32002) {
+                    showStatus('Ya hay una solicitud de conexión pendiente. Revisa MetaMask.', 'warning');
+                } else {
+                    showStatus(`Error conectando: ${error.message}`, 'error');
+                }
+                
+                connectBtn.disabled = false;
+                connectBtn.innerHTML = '🦊 Conectar MetaMask';
+            }
+        }
+
+        // Check existing connection
+        async function checkExistingConnection() {
+            if (!checkMetaMaskInstallation()) {
+                    return;
+                }
+
+            try {
+                const accounts = await window.ethereum.request({ method: 'eth_accounts' });
+                
+                if (accounts.length > 0) {
+                    console.log('🔄 Reconnectando a cuenta existente...');
+                    
+                    web3 = new Web3(window.ethereum);
+                    currentAccount = accounts[0];
+                    isConnected = true;
+                    chainId = await window.ethereum.request({ method: 'eth_chainId' });
+
+                    // Initialize BlockHub Web3 Service
+                    if (window.blockHubWeb3) {
+                        try {
+                            await window.blockHubWeb3.initializeWeb3();
+                            console.log('✅ BlockHub Web3 Service reconectado');
+                        } catch (error) {
+                            console.warn('⚠️ Error reconectando BlockHub Service:', error.message);
+                        }
+                    }
+
+                    await updateWalletStatus();
+                    showStatus('✅ Wallet ya estaba conectado', 'success');
+                }
+            } catch (error) {
+                console.error('Error verificando conexión existente:', error);
+            }
+        }
+
+        // Event Listeners for MetaMask events
+        function setupEventListeners() {
+            if (window.ethereum) {
+                window.ethereum.on('accountsChanged', (accounts) => {
+                    console.log('🔄 Cuentas cambiadas:', accounts);
+                    
+                    if (accounts.length === 0) {
+                        // User disconnected
+                        currentAccount = null;
+                        isConnected = false;
+                        updateWalletStatus();
+                        showStatus('Wallet desconectado', 'warning');
+                    } else {
+                        // Account changed
+                        currentAccount = accounts[0];
+                        updateWalletStatus();
+                        showStatus('Cuenta cambiada', 'info');
+                    }
+                });
+
+                window.ethereum.on('chainChanged', (newChainId) => {
+                    console.log('🔄 Red cambiada:', newChainId);
+                    chainId = newChainId;
+                    updateWalletStatus();
+                    showStatus(`Red cambiada a: ${getNetworkName(newChainId)}`, 'info');
+                });
+
+                window.ethereum.on('disconnect', () => {
+                    console.log('❌ MetaMask desconectado');
+                    currentAccount = null;
+                    isConnected = false;
+                    updateWalletStatus();
+                    showStatus('MetaMask desconectado', 'error');
+                });
+            }
+        }
+
+        // Button Event Handlers
+        connectBtn.addEventListener('click', connectWallet);
+
+        installBtn.addEventListener('click', () => {
+            window.open('https://metamask.io/download/', '_blank');
+        });
+
+        refreshBtn.addEventListener('click', () => {
+            console.log('🔄 Verificando conexión...');
+            showStatus('🔍 Verificando estado de la conexión...', 'info');
+            checkExistingConnection();
+        });
+
+        editorBtn.addEventListener('click', () => {
+            if (isConnected) {
+                window.location.href = 'editor-archivos.html';
+            } else {
+                showStatus('Primero conecta tu wallet', 'warning');
+            }
+        });
+
+        // Initialize on page load
+        window.addEventListener('load', async () => {
+            console.log('🚀 BlockHub Wallet Connect cargado');
+            
+            checkMetaMaskInstallation();
+            setupEventListeners();
+            
+            // Check for existing connection after a brief delay
+            setTimeout(() => {
+                checkExistingConnection();
+            }, 1000);
+        });
+
+        // Navigation function for collaborators
+        function goToCollaborators() {
+            console.log('🤝 Navegando a colaboradores.html...');
+            
+            const routes = [
+                'colaboradores.html',
+                './colaboradores.html',
+                '../colaboradores.html',
+                '/colaboradores.html'
+            ];
+            
+            // Intentar cada ruta
+            function tryRoute(index) {
+                if (index >= routes.length) {
+                    showStatus('❌ No se pudo encontrar la página de colaboradores', 'error');
+                return;
+            }
+            
+                const route = routes[index];
+                console.log(`🔍 Probando ruta: ${route}`);
+                
+                try {
+                    window.location.href = route;
+            } catch (error) {
+                    console.log(`❌ Error con ruta ${route}:`, error.message);
+                    tryRoute(index + 1);
+                }
+            }
+            
+            tryRoute(0);
+        }
+
+        // Make functions available globally for debugging
+        window.connectWallet = connectWallet;
+        window.checkExistingConnection = checkExistingConnection;
+        window.formatAddress = formatAddress;
+        window.goToCollaborators = goToCollaborators;
+
+        // Navbar background effect on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(0, 0, 0, 0.3)';
+            } else {
+                navbar.style.background = 'rgba(235, 235, 235, 0.1)';
+            }
+        });
+    </script>
+</body>
+</html>
