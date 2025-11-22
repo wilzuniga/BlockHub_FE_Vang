@@ -266,6 +266,14 @@
             line-height: 1.6;
         }
 
+        .wallet-helper-text {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin: 1.5rem auto 0;
+            max-width: 480px;
+            line-height: 1.4;
+        }
+
         /* Wallet Status */
         .wallet-status {
             background: var(--dark-glass);
@@ -509,13 +517,22 @@
             </div>
 
             <!-- Status Messages -->
-                <div id="statusMessage" style="display: none;"></div>
+                <div id="statusMessage" role="status" aria-live="polite" style="display: none;"></div>
+
+            <p class="wallet-helper-text">
+                Verifica que MetaMask o WalletConnect estén desbloqueados antes de continuar.
+            </p>
 
             <!-- Action Buttons -->
             <div class="action-buttons">
-                <button id="connectBtn" class="btn btn-primary">
+                <button
+                    id="connectBtn"
+                    class="btn btn-primary"
+                    aria-label="Conectar tu wallet de Ethereum con MetaMask"
+                    title="Conecta tu wallet usando MetaMask"
+                >
                     🦊 Conectar MetaMask
-                    </button>
+                </button>
                 <button id="installBtn" class="btn btn-secondary" style="display: none;">
                     📥 Instalar MetaMask
                 </button>
@@ -631,7 +648,7 @@
                     <div class="status-icon">🦊</div>
                     <div class="status-text">Wallet no conectado</div>
                     <div class="status-text" style="font-size: 0.9rem; color: var(--text-muted);">
-                        Conecta MetaMask para comenzar
+                        Conecta MetaMask o activa WalletConnect para comenzar
                 </div>
                 `;
 
@@ -723,8 +740,8 @@
         // Check existing connection
         async function checkExistingConnection() {
             if (!checkMetaMaskInstallation()) {
-                    return;
-                }
+                return;
+            }
 
             try {
                 const accounts = await window.ethereum.request({ method: 'eth_accounts' });
