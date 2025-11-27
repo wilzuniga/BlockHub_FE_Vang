@@ -287,6 +287,54 @@
             color: var(--text-muted);
         }
 
+        .repo-meta {
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 15px;
+            border: 1px solid var(--glass-border);
+            padding: 1rem;
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .repo-meta-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+
+        .repo-meta-label {
+            color: var(--text-muted);
+        }
+
+        .repo-meta-value {
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        .repo-branches {
+            margin-top: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .branch-pill {
+            padding: 0.35rem 0.8rem;
+            border-radius: 20px;
+            background: rgba(144, 242, 9, 0.15);
+            border: 1px solid rgba(144, 242, 9, 0.3);
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .commit-helper {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-top: -0.5rem;
+            margin-bottom: 0.75rem;
+        }
+
         /* File List */
         .file-list {
             max-height: 300px;
@@ -738,6 +786,7 @@
 
                 <div class="file-section">
                     <h3>📋 Historial de Commits</h3>
+                    <p class="commit-helper">Revisa los commits confirmados y usa Actualizar si hiciste cambios recientes.</p>
                     <div id="commitHistoryHeader" style="margin-bottom: 1rem; display: none;">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
                             <span id="repositoryName" class="repo-name"></span>
@@ -751,6 +800,31 @@
                             📝 No hay commits disponibles<br>
                             <small>Los commits aparecerán aquí cuando estés en modo commit</small>
                         </div>
+                    </div>
+                </div>
+
+                <div class="file-section" id="repoDetailCard" style="display: none;">
+                    <h3>📦 Detalle del Repositorio</h3>
+                    <div class="repo-meta">
+                        <div class="repo-meta-row">
+                            <span class="repo-meta-label">Nombre</span>
+                            <span class="repo-meta-value" id="repoMetaName">—</span>
+                        </div>
+                        <div class="repo-meta-row">
+                            <span class="repo-meta-label">Token / Branch</span>
+                            <span class="repo-meta-value" id="repoMetaToken">—</span>
+                        </div>
+                        <div class="repo-meta-row">
+                            <span class="repo-meta-label">CID</span>
+                            <span class="repo-meta-value" id="repoMetaCID">—</span>
+                        </div>
+                        <div class="repo-meta-row">
+                            <span class="repo-meta-label">Última actualización</span>
+                            <span class="repo-meta-value" id="repoMetaUpdated">—</span>
+                        </div>
+                    </div>
+                    <div class="repo-branches" id="repoBranches">
+                        <span class="branch-pill">main · Activa</span>
                     </div>
                 </div>
 
@@ -851,6 +925,12 @@ console.log('¡Hola BlockHub!');"
         const statusMessage = document.getElementById('statusMessage');
         const testConnBtn = document.getElementById('testConnBtn');
         const web3Status = document.getElementById('web3Status');
+        const repoDetailCard = document.getElementById('repoDetailCard');
+        const repoMetaName = document.getElementById('repoMetaName');
+        const repoMetaToken = document.getElementById('repoMetaToken');
+        const repoMetaCID = document.getElementById('repoMetaCID');
+        const repoMetaUpdated = document.getElementById('repoMetaUpdated');
+        const repoBranches = document.getElementById('repoBranches');
 
         // Utility Functions
         function showStatus(message, type = 'info') {
@@ -986,7 +1066,11 @@ console.log('¡Hola BlockHub!');"
                     tokenId: result.tokenId,
                     transactionHash: result.transactionHash,
                     createdAt: Date.now(),
-                    fileName: currentFileName
+                    fileName: currentFileName,
+                    branches: [
+                        { name: 'main', status: 'Activa' },
+                        { name: 'preview', status: 'Lista para revisar' }
+                    ]
                 };
                 
                 const savedRepos = JSON.parse(localStorage.getItem('blockhub_repositories') || '[]');
@@ -1054,6 +1138,46 @@ console.log('¡Hola BlockHub!');"
             
             repoInfoDiv.className += ' repository-info';
             editorArea.appendChild(repoInfoDiv);
+
+            updateRepoDetailCard({
+                name: repoInfo.name,
+                tokenId: repoInfo.tokenId,
+                ipfsCID: repoInfo.ipfsCID,
+                createdAt: repoInfo.createdAt,
+                branches: repoInfo.branches
+            });
+        }
+
+        function formatShortValue(value) {
+            if (!value) return '—';
+            return value.length > 12 ? `${value.substring(0, 12)}...` : value;
+        }
+
+        function renderRepoBranches(branches = []) {
+            if (!repoBranches) return;
+            if (branches.length === 0) {
+                repoBranches.innerHTML = '<span class="branch-pill">main · Activa</span>';
+                return;
+            }
+
+            repoBranches.innerHTML = branches.map(branch => {
+                const label = branch.status ? `${branch.name} · ${branch.status}` : branch.name;
+                return `<span class="branch-pill">${label}</span>`;
+            }).join('');
+        }
+
+        function updateRepoDetailCard(info = {}) {
+            if (!repoDetailCard) return;
+
+            repoMetaName.textContent = info.name || '—';
+            repoMetaToken.textContent = info.tokenId ? formatShortValue(info.tokenId) : '—';
+            repoMetaCID.textContent = info.ipfsCID ? formatShortValue(info.ipfsCID) : '—';
+
+            const updatedTime = info.updatedLabel || new Date(info.createdAt || Date.now()).toLocaleString();
+            repoMetaUpdated.textContent = updatedTime;
+
+            renderRepoBranches(info.branches || []);
+            repoDetailCard.style.display = 'block';
         }
 
         function updateFileName() {
@@ -1874,6 +1998,17 @@ console.log('¡Hola BlockHub!');"
                 loadCommitHistory(tokenId);
             }, 1000);
             
+            updateRepoDetailCard({
+                name: repoName,
+                tokenId: tokenId,
+                ipfsCID: cid,
+                updatedLabel: 'Modo commit activo',
+                branches: [
+                    { name: 'main', status: 'Activa' },
+                    { name: 'preview', status: 'Pendiente' }
+                ]
+            });
+
             // Mostrar información del repositorio
             showStatus(`📝 Modo Commit activado para: ${repoName} (Token: ${tokenId})`, 'info');
             
