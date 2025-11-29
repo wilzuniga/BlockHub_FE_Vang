@@ -17,31 +17,31 @@ let poapAbi = null;
 async function initializeRemixStyle() {
     try {
         console.log('🚀 Inicializando estilo Remix...');
-        
+
         // Verificar MetaMask
         if (typeof window.ethereum === 'undefined') {
             throw new Error('MetaMask no está instalado');
         }
-        
+
         // Inicializar Ethers.js
         provider = new ethers.providers.Web3Provider(window.ethereum);
         await provider.send("eth_requestAccounts", []);
         signer = provider.getSigner();
-        
+
         const address = await signer.getAddress();
         console.log('🔗 Cuenta conectada:', address);
-        
+
         // Cargar ABIs
         factoryAbi = await loadABI('ABI conections/RepoFactory_abi.json');
         poapAbi = await loadABI('ABI conections/POAP_abi.json');
-        
+
         // Crear contratos (EXACTAMENTE como en Remix)
         factoryContract = new ethers.Contract(FACTORY_ADDRESS, factoryAbi, signer);
         poapContract = new ethers.Contract(POAP_ADDRESS, poapAbi, signer);
-        
+
         console.log('✅ Inicialización completada - estilo Remix');
         console.log('📋 Usar: await factoryContract.createRepository("RepoName", "CID")');
-        
+
         return {
             provider,
             signer,
@@ -49,7 +49,7 @@ async function initializeRemixStyle() {
             poapContract,
             address
         };
-        
+
     } catch (error) {
         console.error('❌ Error inicializando:', error);
         throw error;
@@ -76,40 +76,40 @@ async function createRepository(repoName, cid) {
         console.log('📝 REMIX STYLE: Creando repositorio...');
         console.log('📁 Nombre:', repoName);
         console.log('🔗 CID:', cid);
-        
+
         if (!factoryContract) {
             throw new Error('Contratos no inicializados. Llama a initializeRemixStyle() primero.');
         }
-        
+
         // EXACTAMENTE COMO EN REMIX
         console.log('📞 Ejecutando: await factoryContract.createRepository("' + repoName + '", "' + cid + '")');
-        
+
         const tx = await factoryContract.createRepository(repoName, cid);
         console.log('⏳ Transacción enviada:', tx.hash);
-        
+
         const receipt = await tx.wait();
         console.log('✅ Transacción confirmada!');
         console.log('📋 Receipt:', receipt);
-        
+
         // Buscar eventos
         const events = receipt.events || [];
         console.log('🔍 Eventos encontrados:', events.length);
-        
+
         for (const event of events) {
             if (event.event === 'createdSuccessfully') {
                 console.log('🎉 Evento createdSuccessfully encontrado!');
                 console.log('📋 Args:', event.args);
-                
+
                 const tokenId = event.args.tokenId?.toString();
                 const owner = event.args.owner;
                 const repoCID = event.args.repoCID;
-                
+
                 console.log('🎯 Resultado:');
                 console.log('  Token ID:', tokenId);
                 console.log('  Owner:', owner);
                 console.log('  Repo CID:', repoCID);
                 console.log('  ¿CID coincide?:', repoCID === cid);
-                
+
                 return {
                     success: true,
                     transactionHash: receipt.transactionHash,
@@ -121,11 +121,11 @@ async function createRepository(repoName, cid) {
                 };
             }
         }
-        
+
         // Si no encontró el evento específico
         console.warn('⚠️ Evento createdSuccessfully no encontrado');
         console.log('📋 Todos los eventos:', events.map(e => e.event));
-        
+
         return {
             success: true,
             transactionHash: receipt.transactionHash,
@@ -133,7 +133,7 @@ async function createRepository(repoName, cid) {
             gasUsed: receipt.gasUsed?.toString(),
             note: 'Transacción exitosa pero evento no encontrado'
         };
-        
+
     } catch (error) {
         console.error('❌ Error creando repositorio:', error);
         throw error;
@@ -155,11 +155,11 @@ async function getAccountInfo() {
     if (!signer) {
         throw new Error('Signer no inicializado');
     }
-    
+
     const address = await signer.getAddress();
     const balance = await provider.getBalance(address);
     const network = await provider.getNetwork();
-    
+
     return {
         address,
         balance: ethers.utils.formatEther(balance),
@@ -174,15 +174,15 @@ async function getAllRepositories() {
         console.error("❌ Factory contract no inicializado. Llama a initializeRemixStyle() primero.");
         return null;
     }
-    
+
     try {
         console.log("📋 Obteniendo todos los repositorios...");
-        
+
         const result = await factoryContract.getAllRepos();
         console.log("✅ Resultado bruto:", result);
-        
+
         const [folderCIDs, tokens, owners, names] = result;
-        
+
         const repositories = folderCIDs.map((cid, index) => ({
             tokenId: tokens[index].toString(),
             name: names[index],
@@ -190,14 +190,14 @@ async function getAllRepositories() {
             owner: owners[index],
             index: index
         }));
-        
+
         console.log(`📁 Se encontraron ${repositories.length} repositorios:`);
         repositories.forEach((repo, i) => {
             console.log(`  ${i + 1}. ${repo.name} (Token: ${repo.tokenId}) - ${repo.owner.substring(0, 8)}...`);
         });
-        
+
         return repositories;
-        
+
     } catch (error) {
         console.error("❌ Error obteniendo repositorios:", error);
         return null;
@@ -210,31 +210,31 @@ async function depositToRepo(tokenId, ethAmount) {
         console.error("❌ Factory contract no inicializado. Llama a initializeRemixStyle() primero.");
         return null;
     }
-    
+
     try {
         console.log(`💰 Depositando ${ethAmount} ETH al repositorio ${tokenId}...`);
-        
+
         // Convertir ETH a Wei
         const weiAmount = ethers.utils.parseEther(ethAmount.toString());
         console.log(`💰 Enviando ${ethAmount} ETH (${weiAmount.toString()} Wei)`);
-        
+
         // EXACTAMENTE COMO EN REMIX
         console.log('📞 Ejecutando: await factoryContract.depositToRepo(' + tokenId + ', { value: "' + weiAmount.toString() + '" })');
-        
+
         const tx = await factoryContract.depositToRepo(tokenId, {
             value: weiAmount
         });
-        
+
         console.log('⏳ Transacción enviada:', tx.hash);
-        
+
         const receipt = await tx.wait();
         console.log('✅ Depósito confirmado!');
         console.log('📋 Receipt:', receipt);
-        
+
         // Buscar evento depositedETH
         const events = receipt.events || [];
         console.log('🔍 Eventos encontrados:', events.length);
-        
+
         for (const event of events) {
             if (event.event === 'depositedETH') {
                 const [repoTokenId, depositor, amount] = event.args;
@@ -243,7 +243,7 @@ async function depositToRepo(tokenId, ethAmount) {
                     depositor: depositor,
                     amount: ethers.utils.formatEther(amount) + ' ETH'
                 });
-                
+
                 return {
                     success: true,
                     transactionHash: receipt.transactionHash,
@@ -254,14 +254,14 @@ async function depositToRepo(tokenId, ethAmount) {
                 };
             }
         }
-        
+
         return {
             success: true,
             transactionHash: receipt.transactionHash,
             tokenId: tokenId,
             amount: ethAmount
         };
-        
+
     } catch (error) {
         console.error('❌ Error en depósito:', error.message);
         return { success: false, error: error.message };
@@ -274,37 +274,37 @@ async function approveCommit(tokenId, commitIndex, reward) {
         console.error("❌ Factory contract no inicializado. Llama a initializeRemixStyle() primero.");
         return null;
     }
-    
+
     try {
         console.log(`✅ Aprobando commit ${commitIndex} del repositorio ${tokenId} con recompensa ${reward} ETH...`);
-        
+
         // Convertir recompensa ETH a Wei
         const weiReward = ethers.utils.parseEther(reward.toString());
         console.log(`💰 Recompensa: ${reward} ETH (${weiReward.toString()} Wei)`);
-        
+
         // EXACTAMENTE COMO EN REMIX
         console.log('📞 Ejecutando: await factoryContract.approveCommit(' + tokenId + ', ' + commitIndex + ', "' + weiReward.toString() + '", { value: "' + weiReward.toString() + '" })');
-        
+
         const tx = await factoryContract.approveCommit(
             tokenId,
             commitIndex,
             weiReward,
             { value: weiReward } // Enviar ETH para la recompensa
         );
-        
+
         console.log('⏳ Transacción enviada:', tx.hash);
-        
+
         const receipt = await tx.wait();
         console.log('✅ Commit aprobado!');
         console.log('📋 Receipt:', receipt);
-        
+
         // Buscar eventos
         const events = receipt.events || [];
         console.log('🔍 Eventos encontrados:', events.length);
-        
+
         let approvedEvent = null;
         let badgeEvents = [];
-        
+
         for (const event of events) {
             if (event.event === 'approvedCommit') {
                 approvedEvent = event;
@@ -325,7 +325,7 @@ async function approveCommit(tokenId, commitIndex, reward) {
                 console.log('📊 Stats actualizadas:', event.args);
             }
         }
-        
+
         return {
             success: true,
             transactionHash: receipt.transactionHash,
@@ -336,7 +336,7 @@ async function approveCommit(tokenId, commitIndex, reward) {
             badgeEvents: badgeEvents,
             gasUsed: receipt.gasUsed.toString()
         };
-        
+
     } catch (error) {
         console.error('❌ Error aprobando commit:', error.message);
         return { success: false, error: error.message };
@@ -349,30 +349,30 @@ async function rejectCommit(tokenId, commitIndex) {
         console.error("❌ Factory contract no inicializado. Llama a initializeRemixStyle() primero.");
         return null;
     }
-    
+
     try {
         console.log(`🚫 Rechazando commit ${commitIndex} del repositorio ${tokenId}...`);
-        
+
         // EXACTAMENTE COMO EN REMIX
         console.log('📞 Ejecutando: await factoryContract.rejectCommit(' + tokenId + ', ' + commitIndex + ')');
-        
+
         const tx = await factoryContract.rejectCommit(
             tokenId,
             commitIndex
         );
-        
+
         console.log('⏳ Transacción enviada:', tx.hash);
-        
+
         const receipt = await tx.wait();
         console.log('✅ Commit rechazado!');
         console.log('📋 Receipt:', receipt);
-        
+
         // Buscar eventos
         const events = receipt.events || [];
         console.log('🔍 Eventos encontrados:', events.length);
-        
+
         let rejectedEvent = null;
-        
+
         for (const event of events) {
             if (event.event === 'rejectedCommit') {
                 rejectedEvent = event;
@@ -383,7 +383,7 @@ async function rejectCommit(tokenId, commitIndex) {
                 });
             }
         }
-        
+
         return {
             success: true,
             transactionHash: receipt.transactionHash,
@@ -392,7 +392,7 @@ async function rejectCommit(tokenId, commitIndex) {
             rejectedEvent: rejectedEvent,
             gasUsed: receipt.gasUsed.toString()
         };
-        
+
     } catch (error) {
         console.error('❌ Error rechazando commit:', error.message);
         return { success: false, error: error.message };
@@ -405,18 +405,18 @@ async function getCommitCID(tokenId, commitIndex) {
         console.error("❌ Factory contract no inicializado. Llama a initializeRemixStyle() primero.");
         return null;
     }
-    
+
     try {
         console.log(`🔗 Obteniendo CID del commit ${commitIndex} del repositorio ${tokenId}...`);
-        
+
         // EXACTAMENTE COMO EN REMIX
         console.log('📞 Ejecutando: await factoryContract.getCommitCID(' + tokenId + ', ' + commitIndex + ')');
-        
+
         const commitCID = await factoryContract.getCommitCID(tokenId, commitIndex);
         console.log(`✅ CID obtenido: ${commitCID}`);
-        
+
         return commitCID;
-        
+
     } catch (error) {
         console.error('❌ Error obteniendo CID del commit:', error.message);
         console.log('💡 La función getCommitCID podría no estar disponible en el contrato');
@@ -430,30 +430,30 @@ async function retrieveCommits(tokenId) {
         console.error("❌ Factory contract no inicializado. Llama a initializeRemixStyle() primero.");
         return null;
     }
-    
+
     try {
         console.log(`📋 Obteniendo commits del repositorio ${tokenId}...`);
-        
+
         // EXACTAMENTE COMO EN REMIX
         console.log('📞 Ejecutando: await factoryContract.retrieveCommits(' + tokenId + ')');
-        
+
         const commitsData = await factoryContract.retrieveCommits(tokenId);
         console.log('📥 Datos de commits recibidos:', commitsData);
-        
+
         // Destructurar los arrays retornados: messages, timestamps, committers, status
         const [messages, timestamps, committers, statuses] = commitsData;
-        
+
         console.log('📝 Messages:', messages);
         console.log('⏰ Timestamps:', timestamps.map(t => t.toString()));
         console.log('👤 Committers:', committers);
         console.log('📊 Statuses:', statuses.map(s => s.toString()));
-        
+
         // Convertir a formato más manejable
         const commits = [];
         for (let i = 0; i < messages.length; i++) {
             const status = parseInt(statuses[i].toString());
             const timestamp = parseInt(timestamps[i].toString());
-            
+
             commits.push({
                 index: i,
                 message: messages[i],
@@ -463,7 +463,7 @@ async function retrieveCommits(tokenId) {
                 status: status,
                 statusText: status === 0 ? 'pending' : status === 1 ? 'approved' : 'rejected'
             });
-            
+
             console.log(`📋 Commit #${i}:`, {
                 message: messages[i],
                 committer: committers[i],
@@ -471,7 +471,7 @@ async function retrieveCommits(tokenId) {
                 date: new Date(timestamp * 1000).toLocaleString()
             });
         }
-        
+
         return {
             success: true,
             tokenId: tokenId,
@@ -484,7 +484,7 @@ async function retrieveCommits(tokenId) {
                 statuses: statuses
             }
         };
-        
+
     } catch (error) {
         console.error('❌ Error obteniendo commits:', error.message);
         return { success: false, error: error.message };
@@ -497,18 +497,18 @@ async function processNewCommit(tokenId, commitMessage, newCID) {
         console.error("❌ Factory contract no inicializado. Llama a initializeRemixStyle() primero.");
         return null;
     }
-    
+
     try {
         console.log(`🔄 Procesando nuevo commit para token ${tokenId}...`);
         console.log(`📝 Mensaje: "${commitMessage}"`);
         console.log(`🔗 Nuevo CID: ${newCID}`);
-        
+
         const tx = await factoryContract.processNewCommit(tokenId, commitMessage, newCID);
         console.log("⏳ Transacción enviada:", tx.hash);
-        
+
         const receipt = await tx.wait();
         console.log("✅ Transacción confirmada:", receipt);
-        
+
         const result = {
             success: true,
             transactionHash: receipt.transactionHash,
@@ -519,10 +519,10 @@ async function processNewCommit(tokenId, commitMessage, newCID) {
             newCID: newCID,
             timestamp: Date.now()
         };
-        
+
         console.log("🎉 ¡Commit procesado exitosamente!", result);
         return result;
-        
+
     } catch (error) {
         console.error("❌ Error procesando commit:", error);
         return null;
@@ -534,21 +534,21 @@ async function getRepositoryStats() {
     try {
         const repos = await getAllRepositories();
         if (!repos) return null;
-        
+
         const currentAccount = await signer.getAddress();
         const myRepos = repos.filter(repo => repo.owner.toLowerCase() === currentAccount.toLowerCase());
         const uniqueOwners = new Set(repos.map(repo => repo.owner)).size;
-        
+
         const stats = {
             totalRepositories: repos.length,
             myRepositories: myRepos.length,
             uniqueOwners: uniqueOwners,
             repositories: repos
         };
-        
+
         console.log("📊 Estadísticas de repositorios:", stats);
         return stats;
-        
+
     } catch (error) {
         console.error("❌ Error obteniendo estadísticas:", error);
         return null;
