@@ -335,6 +335,38 @@
             margin-bottom: 0.75rem;
         }
 
+        .wallet-guard {
+            margin-top: 0.75rem;
+            padding: 0.75rem 1rem;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px dashed rgba(144, 242, 9, 0.4);
+            font-size: 0.85rem;
+            line-height: 1.4;
+            transition: border-color 0.3s ease, background 0.3s ease;
+        }
+
+        .wallet-guard[data-state="ready"] {
+            border-color: rgba(144, 242, 9, 0.8);
+            background: rgba(144, 242, 9, 0.12);
+        }
+
+        .wallet-guard-title {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: var(--secondary-color);
+        }
+
+        .wallet-guard-copy {
+            margin: 0;
+            color: var(--text-muted);
+        }
+
+        .wallet-guard[data-state="ready"] .wallet-guard-copy {
+            color: var(--text-light);
+        }
+
         /* File List */
         .file-list {
             max-height: 300px;
@@ -848,6 +880,16 @@
                         🔍 Verificando conexión...
                     </div>
 
+                    <div id="walletGuardNote" class="wallet-guard" data-state="locked" aria-live="polite">
+                        <span class="wallet-guard-title">Acciones protegidas</span>
+                        <p id="walletGuardCopy" class="wallet-guard-copy">
+                            🔒 Conecta tu wallet antes de crear repositorios o firmar commits.
+                        </p>
+                        <small style="display: block; margin-top: 0.35rem; color: var(--text-muted);">
+                            Guardar en IPFS sigue disponible sin conexión.
+                        </small>
+                    </div>
+
                     <button id="collaboratorsBtn" class="btn btn-secondary" style="width: 100%; margin-top: 0.5rem; background: linear-gradient(45deg, #00ffaa, #00aa88); color: #000;" onclick="goToCollaborators()">
                         🤝 Colaboradores
                     </button>
@@ -931,6 +973,8 @@ console.log('¡Hola BlockHub!');"
         const repoMetaCID = document.getElementById('repoMetaCID');
         const repoMetaUpdated = document.getElementById('repoMetaUpdated');
         const repoBranches = document.getElementById('repoBranches');
+        const walletGuardNote = document.getElementById('walletGuardNote');
+        const walletGuardCopy = document.getElementById('walletGuardCopy');
 
         // Utility Functions
         function showStatus(message, type = 'info') {
@@ -944,6 +988,18 @@ console.log('¡Hola BlockHub!');"
                 }, 5000);
             }
         }
+
+        function updateWalletGuardState(isConnected, customMessage) {
+            if (!walletGuardNote || !walletGuardCopy) {
+                return;
+            }
+            walletGuardNote.dataset.state = isConnected ? 'ready' : 'locked';
+            walletGuardCopy.textContent = customMessage || (isConnected
+                ? '✅ Wallet validada. Ya puedes ejecutar acciones en blockchain desde este editor.'
+                : '🔒 Conecta tu wallet antes de crear repositorios o procesar commits.');
+        }
+
+        updateWalletGuardState(false);
 
         // Web3 Functions - Simplified version that assumes connection exists
         async function checkWeb3Connection() {
@@ -966,6 +1022,7 @@ console.log('¡Hola BlockHub!');"
                     const accountInfo = window.blockHubWeb3.getAccountInfo();
                     web3Status.innerHTML = `🔗 Conectado: ${window.blockHubWeb3.formatAddress(accountInfo.account)}`;
                     web3Status.className = 'status-message status-success';
+                    updateWalletGuardState(true);
                     
                     // Habilitar botón de crear repositorio si hay archivo
                     if (currentFileHash) {
@@ -982,6 +1039,7 @@ console.log('¡Hola BlockHub!');"
                 console.error('Error verificando Web3:', error);
                 web3Status.innerHTML = `❌ ${error.message}`;
                 web3Status.className = 'status-message status-error';
+                updateWalletGuardState(false, `🔒 ${error.message}`);
                 
                 // Show user-friendly message suggesting to go back to wallet page
                 if (error.message.includes('No hay cuentas conectadas') || error.message.includes('MetaMask no detectado')) {

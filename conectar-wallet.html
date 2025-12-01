@@ -274,6 +274,10 @@
             line-height: 1.4;
         }
 
+        .wallet-helper-text[data-state="ready"] {
+            color: var(--secondary-color);
+        }
+
         /* Wallet Status */
         .wallet-status {
             background: var(--dark-glass);
@@ -523,6 +527,10 @@
                 Verifica que MetaMask o WalletConnect estén desbloqueados antes de continuar.
             </p>
 
+            <p class="wallet-helper-text" id="editorReminder" aria-live="polite" data-state="locked">
+                🔒 Las acciones críticas se mantienen bloqueadas hasta validar tu wallet.
+            </p>
+
             <!-- Action Buttons -->
             <div class="action-buttons">
                 <button
@@ -568,6 +576,7 @@
         const editorBtn = document.getElementById('editorBtn');
         const walletStatus = document.getElementById('walletStatus');
         const statusMessage = document.getElementById('statusMessage');
+        const editorReminder = document.getElementById('editorReminder');
 
         // Utility Functions
         function showStatus(message, type = 'info') {
@@ -638,6 +647,10 @@
                     connectBtn.innerHTML = '✅ Conectado';
                     connectBtn.disabled = true;
                     editorBtn.disabled = false;
+                    if (editorReminder) {
+                        editorReminder.dataset.state = 'ready';
+                        editorReminder.textContent = '✅ Wallet validada. Puedes abrir el editor y ejecutar acciones críticas.';
+                    }
 
                 } catch (error) {
                     console.error('Error obteniendo datos del wallet:', error);
@@ -655,6 +668,10 @@
                 connectBtn.innerHTML = '🦊 Conectar MetaMask';
                 connectBtn.disabled = false;
                 editorBtn.disabled = true;
+                if (editorReminder) {
+                    editorReminder.dataset.state = 'locked';
+                    editorReminder.textContent = '🔒 Las acciones críticas se mantienen bloqueadas hasta validar tu wallet.';
+                }
             }
         }
 
