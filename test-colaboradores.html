@@ -55,7 +55,6 @@
         <button onclick="testClassAvailability()">2. 📦 Test Clases Disponibles</button>
         <button onclick="testFunctions()">3. ⚙️ Test Funciones</button>
         <button onclick="testNavigation()">4. 🧭 Test Navegación</button>
-        <button onclick="testRepoModuleIntegration()">5. 🧩 Test Módulo Repos</button>
 
         <h2>📊 Resultados</h2>
         <div id="results" class="log">
@@ -178,32 +177,6 @@
             }
         }
 
-        function testRepoModuleIntegration() {
-            log('🧩 Testing repository module integration...', 'info');
-            const service = window.blockHubWeb3;
-
-            if (!service) {
-                log('❌ blockHubWeb3 no está definido. Revisa web3-contract-integration.js', 'error');
-                return;
-            }
-
-            log('✅ blockHubWeb3 detectado en ventana global', 'success');
-            log(`ℹ️ Estado inicializado: ${service.isInitialized ? 'sí' : 'no'}`, service.isInitialized ? 'success' : 'warning');
-
-            if (typeof service.createRepository === 'function') {
-                log('✅ Método createRepository disponible para la interfaz', 'success');
-            } else {
-                log('❌ Método createRepository no encontrado', 'error');
-            }
-
-            if (service.contracts) {
-                log(`📍 RepoFactory: ${service.contracts.repoFactory || 'sin configurar'}`, 'info');
-                log(`📍 POAP: ${service.contracts.poap || 'sin configurar'}`, 'info');
-            } else {
-                log('⚠️ No se detectaron contratos configurados en el servicio', 'warning');
-            }
-        }
-
         function testNavigation() {
             log('🧭 Testing navigation links...', 'info');
             
@@ -251,7 +224,6 @@
             setTimeout(() => {
                 testScriptLoading();
                 testClassAvailability();
-                testRepoModuleIntegration();
             }, 1000);
         });
     </script>

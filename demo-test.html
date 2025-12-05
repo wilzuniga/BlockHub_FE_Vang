@@ -81,59 +81,6 @@
             color: #ffaa00;
             margin-top: 8px;
         }
-
-        .integration-banner {
-            border: 1px dashed #00ff00;
-            background: #050505;
-            border-radius: 10px;
-        }
-
-        .integration-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 15px;
-            margin-top: 15px;
-        }
-
-        .mini-label {
-            font-size: 0.75rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: #aaaaaa;
-            margin-bottom: 4px;
-        }
-
-        .mini-note {
-            font-size: 0.85rem;
-            color: #cccccc;
-            margin-top: 6px;
-        }
-
-        .status-pill {
-            display: inline-block;
-            padding: 6px 12px;
-            border-radius: 999px;
-            font-weight: bold;
-            font-size: 0.9rem;
-            border: 1px solid #00ff00;
-            color: #00ff00;
-            background: #101010;
-        }
-
-        .status-pill[data-state="pending"] {
-            border-color: #ffaa00;
-            color: #ffaa00;
-        }
-
-        .status-pill[data-state="error"] {
-            border-color: #ff0000;
-            color: #ff5f5f;
-        }
-
-        .status-pill[data-state="ready"] {
-            border-color: #00ffcc;
-            color: #00ffcc;
-        }
     </style>
 </head>
 
@@ -198,29 +145,6 @@
         </div>
 
         <div class="demo-section">
-            <h2>🧩 Integración con la Interfaz</h2>
-            <div class="step integration-banner">
-                <p>
-                    Esta demo usa el mismo módulo <code>BlockHubWeb3Service.createRepository</code> que alimenta
-                    la vista principal en <a href="colaboradores.html" target="_blank">colaboradores.html</a>.
-                    Úsalo para validar contratos antes de conectar la UI principal.
-                </p>
-                <div class="integration-grid">
-                    <div>
-                        <p class="mini-label">Estado del módulo</p>
-                        <span id="repoModuleStatus" class="status-pill" data-state="pending">Sincronizando...</span>
-                        <p id="repoModuleHint" class="mini-note">Conecta MetaMask para compartir estado con la interfaz.</p>
-                    </div>
-                    <div>
-                        <p class="mini-label">Contratos enlazados</p>
-                        <span id="contractSyncStatus" class="status-pill" data-state="pending">Sin datos</span>
-                        <p id="contractAddresses" class="mini-note">RepoFactory: -- | POAP: --</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="demo-section">
             <h2>📊 Estado Actual</h2>
             <div class="code">
                 <div id="currentState" role="status" aria-live="polite">
@@ -269,54 +193,6 @@
         let currentHash = null;
         let web3Connected = false;
 
-        const integrationRefs = {
-            moduleStatus: document.getElementById('repoModuleStatus'),
-            moduleHint: document.getElementById('repoModuleHint'),
-            contractStatus: document.getElementById('contractSyncStatus'),
-            contractAddresses: document.getElementById('contractAddresses')
-        };
-
-        function setPillState(element, state, text) {
-            if (!element) return;
-            element.dataset.state = state;
-            element.textContent = text;
-        }
-
-        function setTextContent(element, text) {
-            if (element) {
-                element.textContent = text;
-            }
-        }
-
-        function refreshIntegrationBanner() {
-            const service = window.blockHubWeb3;
-            if (!integrationRefs.moduleStatus) return;
-
-            if (!service) {
-                setPillState(integrationRefs.moduleStatus, 'error', 'Servicio no disponible');
-                setTextContent(integrationRefs.moduleHint, 'Incluye web3-contract-integration.js para habilitar el módulo.');
-                setPillState(integrationRefs.contractStatus, 'pending', 'Contratos sin registrar');
-                setTextContent(integrationRefs.contractAddresses, 'RepoFactory: -- | POAP: --');
-                return;
-            }
-
-            if (service.isInitialized && web3Connected) {
-                setPillState(integrationRefs.moduleStatus, 'ready', 'Listo para crear repositorios');
-                setTextContent(integrationRefs.moduleHint, 'Los estados se reflejan también en la interfaz principal.');
-            } else {
-                setPillState(integrationRefs.moduleStatus, 'pending', 'Esperando conexión de wallet');
-                setTextContent(integrationRefs.moduleHint, 'Conecta MetaMask para compartir contexto con la UI.');
-            }
-
-            if (service.contracts) {
-                setPillState(integrationRefs.contractStatus, 'ready', 'Direcciones detectadas');
-                setTextContent(integrationRefs.contractAddresses, `RepoFactory: ${service.contracts.repoFactory || '--'} | POAP: ${service.contracts.poap || '--'}`);
-            } else {
-                setPillState(integrationRefs.contractStatus, 'pending', 'Contratos no configurados');
-                setTextContent(integrationRefs.contractAddresses, 'RepoFactory: -- | POAP: --');
-            }
-        }
-
         // Verificaciones iniciales
         function checkMetaMask() {
             const status = document.getElementById('metamaskStatus');
@@ -344,11 +220,9 @@
             const status = document.getElementById('web3Status');
             if (window.blockHubWeb3) {
                 status.innerHTML = '<span class="success">✅ Web3 Service cargado</span>';
-                refreshIntegrationBanner();
                 return true;
             } else {
                 status.innerHTML = '<span class="error">❌ Web3 Service no disponible</span>';
-                refreshIntegrationBanner();
                 return false;
             }
         }
@@ -452,11 +326,9 @@ Contratos: Cargados`;
 
                 document.getElementById('repoBtn').disabled = false;
                 updateStatus();
-                refreshIntegrationBanner();
 
             } catch (error) {
                 output.innerHTML = `<span class="error">❌ Error: ${error.message}</span>`;
-                refreshIntegrationBanner();
             }
         }
 
@@ -490,7 +362,6 @@ Hash TX: ${result.transactionHash}<br>
 IPFS CID: ${currentHash}`;
 
                 updateStatus();
-                refreshIntegrationBanner();
 
             } catch (error) {
                 if (error.message.includes('0x0000000000000000000000000000000000000000')) {
@@ -501,7 +372,6 @@ Error: ${error.message}`;
                 } else {
                     output.innerHTML = `<span class="error">❌ Error: ${error.message}</span>`;
                 }
-                refreshIntegrationBanner();
             }
         }
 
@@ -539,7 +409,6 @@ Error: ${error.message}`;
                 checkPinata();
                 checkWeb3Service();
                 updateStatus();
-                refreshIntegrationBanner();
             }, 1000);
         });
     </script>
