@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +12,6 @@
             padding: 20px;
             line-height: 1.6;
         }
-
         .container {
             max-width: 800px;
             margin: 0 auto;
@@ -22,14 +20,12 @@
             border-radius: 10px;
             border: 2px solid #00ff00;
         }
-
         .step {
             margin: 20px 0;
             padding: 15px;
             background: #0a0a0a;
             border-left: 4px solid #00ff00;
         }
-
         .code {
             background: #1a1a1a;
             padding: 10px;
@@ -38,22 +34,18 @@
             margin: 10px 0;
             border: 1px solid #333;
         }
-
         .success {
             color: #00ff00;
             font-weight: bold;
         }
-
         .warning {
             color: #ffaa00;
             font-weight: bold;
         }
-
         .error {
             color: #ff0000;
             font-weight: bold;
         }
-
         button {
             background: #00ff00;
             color: #000;
@@ -64,26 +56,17 @@
             font-weight: bold;
             margin: 5px;
         }
-
         button:hover {
             background: #00aa00;
         }
-
         .demo-section {
             margin: 30px 0;
             padding: 20px;
             background: #0a0a0a;
             border-radius: 10px;
         }
-
-        .step-hint {
-            font-size: 0.9rem;
-            color: #ffaa00;
-            margin-top: 8px;
-        }
     </style>
 </head>
-
 <body>
     <div class="container">
         <h1>🚀 BlockHub - Demo de Creación de Repositorios</h1>
@@ -94,52 +77,50 @@
             <div class="step">
                 <h3>1. MetaMask Instalado</h3>
                 <p id="metamaskStatus" class="warning">Verificando MetaMask...</p>
-                <button type="button" onclick="checkMetaMask()">🔍 Verificar MetaMask</button>
+                <button onclick="checkMetaMask()">🔍 Verificar MetaMask</button>
             </div>
-
+            
             <div class="step">
                 <h3>2. Pinata Configurado</h3>
                 <p id="pinataStatus" class="warning">Verificando Pinata...</p>
-                <button type="button" onclick="checkPinata()">🔍 Verificar Pinata</button>
+                <button onclick="checkPinata()">🔍 Verificar Pinata</button>
             </div>
-
+            
             <div class="step">
                 <h3>3. Web3 Service Cargado</h3>
                 <p id="web3Status" class="warning">Verificando Web3 Service...</p>
-                <button type="button" onclick="checkWeb3Service()">🔍 Verificar Web3 Service</button>
+                <button onclick="checkWeb3Service()">🔍 Verificar Web3 Service</button>
             </div>
         </div>
 
         <div class="demo-section">
             <h2>🔧 Demo Paso a Paso</h2>
-
+            
             <div class="step">
                 <h3>Paso 1: Crear Archivo de Ejemplo</h3>
                 <p>Vamos a crear un archivo de ejemplo para demostrar el flujo completo.</p>
-                <button type="button" onclick="createSampleFile()">📄 Crear Archivo de Ejemplo</button>
+                <button onclick="createSampleFile()">📄 Crear Archivo de Ejemplo</button>
                 <div id="fileOutput" class="code" style="display: none;"></div>
             </div>
-
+            
             <div class="step">
                 <h3>Paso 2: Guardar en IPFS</h3>
                 <p>Subir el archivo a IPFS usando Pinata.</p>
-                <button type="button" onclick="uploadToIPFS()" disabled id="uploadBtn">💾 Subir a IPFS</button>
+                <button onclick="uploadToIPFS()" disabled id="uploadBtn">💾 Subir a IPFS</button>
                 <div id="ipfsOutput" class="code" style="display: none;"></div>
             </div>
-
+            
             <div class="step">
                 <h3>Paso 3: Conectar Web3</h3>
                 <p>Conectar con MetaMask para interactuar con contratos.</p>
-                <button type="button" onclick="connectWeb3()" id="connectBtn">🦊 Conectar MetaMask</button>
+                <button onclick="connectWeb3()" id="connectBtn">🦊 Conectar MetaMask</button>
                 <div id="web3Output" class="code" style="display: none;"></div>
             </div>
-
+            
             <div class="step">
                 <h3>Paso 4: Crear Repositorio</h3>
                 <p>Crear repositorio en blockchain usando el hash IPFS.</p>
-                <p class="step-hint">Tip: usa el mismo nombre que aparecerá en el contrato para identificar tu repo en
-                    BlockHub.</p>
-                <button type="button" onclick="createRepository()" disabled id="repoBtn">🚀 Crear Repositorio</button>
+                <button onclick="createRepository()" disabled id="repoBtn">🚀 Crear Repositorio</button>
                 <div id="repoOutput" class="code" style="display: none;"></div>
             </div>
         </div>
@@ -147,14 +128,14 @@
         <div class="demo-section">
             <h2>📊 Estado Actual</h2>
             <div class="code">
-                <div id="currentState" role="status" aria-live="polite">
+                <div id="currentState">
                     📁 Archivo: No creado<br>
                     🔗 IPFS Hash: No disponible<br>
                     🦊 Web3: No conectado<br>
                     📄 Repositorio: No creado
                 </div>
             </div>
-            <button type="button" onclick="updateStatus()">🔄 Actualizar Estado</button>
+            <button onclick="updateStatus()">🔄 Actualizar Estado</button>
         </div>
 
         <div class="demo-section">
@@ -162,24 +143,24 @@
             <div class="step">
                 <h3>Variables Globales Disponibles</h3>
                 <div class="code">
-                    // Hash del archivo actual en IPFS
-                    window.BLOCKHUB_CURRENT_FILE_HASH
+// Hash del archivo actual en IPFS
+window.BLOCKHUB_CURRENT_FILE_HASH
 
-                    // Información del último repositorio creado
-                    window.BLOCKHUB_LAST_REPOSITORY
+// Información del último repositorio creado  
+window.BLOCKHUB_LAST_REPOSITORY
 
-                    // Instancia del servicio Web3
-                    window.blockHubWeb3
+// Instancia del servicio Web3
+window.blockHubWeb3
 
-                    // Servicio de Pinata
-                    window.pinataService
+// Servicio de Pinata
+window.pinataService
                 </div>
-                <button type="button" onclick="showGlobalVars()">📋 Mostrar Variables</button>
+                <button onclick="showGlobalVars()">📋 Mostrar Variables</button>
             </div>
         </div>
     </div>
 
-    <!-- Scripts necesarios para la demo -->
+    <!-- Include necessary scripts -->
     <script src="pinata-config.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
@@ -259,7 +240,7 @@ contract DemoContract {
             const output = document.getElementById('fileOutput');
             output.style.display = 'block';
             output.innerHTML = `<strong>Archivo creado:</strong> ${demoFileName}<br><br>${demoContent.replace(/\n/g, '<br>')}`;
-
+            
             document.getElementById('uploadBtn').disabled = false;
             updateStatus();
         }
@@ -284,7 +265,7 @@ contract DemoContract {
                     // Modo simulación
                     await new Promise(resolve => setTimeout(resolve, 2000));
                     hash = 'Qm' + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-
+                    
                     // Guardar en localStorage para simulación
                     localStorage.setItem(`blockhub_file_${hash}`, JSON.stringify({
                         content: demoContent,
@@ -349,10 +330,10 @@ Contratos: Cargados`;
 
             try {
                 const repoName = demoFileName.replace(/\.[^/.]+$/, ""); // Remover extensión
-
+                
                 // Nota: Esto fallará hasta que se actualicen las direcciones de contrato
                 const result = await window.blockHubWeb3.createRepository(repoName, currentHash);
-
+                
                 window.BLOCKHUB_LAST_REPOSITORY = result;
 
                 output.innerHTML = `<span class="success">✅ Repositorio creado exitosamente</span><br>
@@ -413,5 +394,4 @@ Error: ${error.message}`;
         });
     </script>
 </body>
-
 </html>
