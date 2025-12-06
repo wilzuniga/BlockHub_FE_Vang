@@ -1,21 +1,13 @@
 /* CSS Variables for Color Palette */
 :root {
-    --primary: #90F209;
-    /* Bright Green - Primary */
-    --secondary: #1a1a1a;
-    /* Dark Gray - Secondary */
-    --tertiary: #013EFB;
-    /* Blue - Tertiary */
-    --quaternary: #000000;
-    /* Pure Black - Quaternary */
-    --dark-bg: #0a0a0a;
-    /* Very Dark Background */
-    --card-bg: #111111;
-    /* Card Background */
-    --text-primary: #ffffff;
-    /* White Text */
-    --text-secondary: #cccccc;
-    /* Light Gray Text */
+    --primary: #90F209;      /* Bright Green - Primary */
+    --secondary: #1a1a1a;    /* Dark Gray - Secondary */
+    --tertiary: #013EFB;     /* Blue - Tertiary */
+    --quaternary: #000000;   /* Pure Black - Quaternary */
+    --dark-bg: #0a0a0a;      /* Very Dark Background */
+    --card-bg: #111111;      /* Card Background */
+    --text-primary: #ffffff; /* White Text */
+    --text-secondary: #cccccc; /* Light Gray Text */
 }
 
 /* Reset and Base Styles */
@@ -34,22 +26,14 @@ body {
 }
 
 /* Typography */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
     font-family: 'Roboto Mono', monospace;
     font-weight: 600;
     letter-spacing: -0.02em;
 }
 
 /* Body text with better readability */
-p,
-span,
-a,
-li {
+p, span, a, li {
     font-family: 'Roboto Mono', monospace;
     font-weight: 400;
     line-height: 1.7;
@@ -153,23 +137,23 @@ li {
         transition: left 0.3s ease;
         z-index: 999;
     }
-
+    
     .nav-menu.active {
         left: 0;
     }
-
+    
     .nav-menu li {
         margin: 1rem 0;
     }
-
+    
     .nav-toggle.active span:nth-child(1) {
         transform: rotate(45deg) translate(5px, 5px);
     }
-
+    
     .nav-toggle.active span:nth-child(2) {
         opacity: 0;
     }
-
+    
     .nav-toggle.active span:nth-child(3) {
         transform: rotate(-45deg) translate(7px, -6px);
     }
@@ -254,15 +238,8 @@ li {
 }
 
 @keyframes float {
-
-    0%,
-    100% {
-        transform: translateY(0px);
-    }
-
-    50% {
-        transform: translateY(-20px);
-    }
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
 }
 
 /* Features Section - Single Row Layout */
@@ -470,22 +447,17 @@ li {
 }
 
 @keyframes floatInverted {
-
-    0%,
-    100% {
-        transform: translateY(0px) rotateX(0deg) rotateY(0deg);
+    0%, 100% { 
+        transform: translateY(0px) rotateX(0deg) rotateY(0deg); 
     }
-
-    25% {
-        transform: translateY(-15px) rotateX(10deg) rotateY(-5deg);
+    25% { 
+        transform: translateY(-15px) rotateX(10deg) rotateY(-5deg); 
     }
-
-    50% {
-        transform: translateY(-30px) rotateX(0deg) rotateY(10deg);
+    50% { 
+        transform: translateY(-30px) rotateX(0deg) rotateY(10deg); 
     }
-
-    75% {
-        transform: translateY(-15px) rotateX(-10deg) rotateY(-5deg);
+    75% { 
+        transform: translateY(-15px) rotateX(-10deg) rotateY(-5deg); 
     }
 }
 
@@ -864,7 +836,7 @@ li {
         gap: 1.5rem;
         padding: 0 15px;
     }
-
+    
     .feature-card {
         min-width: 250px;
         max-width: 250px;
@@ -876,7 +848,7 @@ li {
         gap: 1rem;
         padding: 0 10px;
     }
-
+    
     .feature-card {
         min-width: 220px;
         max-width: 220px;
@@ -889,25 +861,25 @@ li {
         grid-template-columns: 1fr;
         text-align: center;
     }
-
+    
     .hero-title {
         font-size: 2.5rem;
     }
-
+    
     .features-grid {
         flex-direction: column;
         align-items: center;
         min-width: auto;
         gap: 1.5rem;
     }
-
+    
     .feature-card {
         min-width: auto;
         max-width: 100%;
         width: 100%;
         max-width: 400px;
     }
-
+    
     .section-title {
         font-size: 2rem;
         margin-bottom: 2rem;
@@ -918,146 +890,146 @@ li {
     .hero-title {
         font-size: 2rem;
     }
-
+    
     .section-title {
         font-size: 1.8rem;
         margin-bottom: 1.5rem;
     }
-
+    
     .features {
         padding: 60px 0;
     }
-
+    
     .feature-card {
         padding: 1.5rem;
         margin: 0 10px;
     }
-
+    
     .feature-icon {
         font-size: 2.5rem;
     }
-
+    
     .feature-card h3 {
         font-size: 1.3rem;
     }
-
+    
     .feature-card p {
         font-size: 0.9rem;
     }
-
+    
     .collaborate {
         padding: 60px 0;
     }
-
+    
     .collaborate-content {
         padding: 0 20px;
     }
-
+    
     .collaborate-problem,
     .collaborate-solution,
     .collaborate-benefit {
         padding: 1.5rem;
         margin-bottom: 1.5rem;
     }
-
+    
     .collaborate-text {
         font-size: 1.1rem;
     }
-
+    
     .collaborate-problem h3,
     .collaborate-solution h3,
     .collaborate-benefit h3 {
         font-size: 1.3rem;
     }
-
+    
     .collaborate-problem p,
     .collaborate-solution p,
     .collaborate-benefit p {
         font-size: 1rem;
     }
-
+    
     .what-makes-us-different {
         padding: 60px 0;
         min-height: auto;
     }
-
+    
     .different-container {
         grid-template-columns: 1fr;
         gap: 3rem;
         text-align: center;
     }
-
+    
     .different-content {
         padding-left: 0;
         order: 1;
     }
-
+    
     .different-graphic {
         order: 2;
     }
-
+    
     .different-content .section-title {
         text-align: center;
         font-size: 2rem;
     }
-
+    
     .different-text {
         font-size: 1.1rem;
     }
-
+    
     .different-blocks {
         gap: 0.8rem;
     }
-
+    
     .different-block {
         width: 80px;
         height: 80px;
     }
-
+    
     .how-it-works {
         padding: 60px 0;
     }
-
+    
     .workflow-grid {
         gap: 1.5rem;
     }
-
+    
     .workflow-step {
         padding: 1.5rem;
     }
-
+    
     .tech-stack {
         padding: 60px 0;
     }
-
+    
     .tech-grid {
         gap: 1.5rem;
     }
-
+    
     .tech-item {
         padding: 1.5rem;
     }
-
+    
     .cta {
         padding: 60px 0;
     }
-
+    
     .cta-content {
         padding: 2rem;
     }
-
+    
     .cta h2 {
         font-size: 2rem;
     }
-
+    
     .cta p {
         font-size: 1.1rem;
     }
-
+    
     .footer {
         padding: 40px 0 20px;
     }
-
+    
     .footer-content {
         gap: 1.5rem;
     }
