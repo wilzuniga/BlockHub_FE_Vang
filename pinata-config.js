@@ -5,6 +5,7 @@ const PINATA_CONFIG = {
     
     gateway: 'https://ipfs.io/ipfs/',
     
+    
     fallbackGateways: [
         'https://cloudflare-ipfs.com/ipfs/',
         'https://dweb.link/ipfs/',
