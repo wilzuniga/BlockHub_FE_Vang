@@ -2,16 +2,16 @@
 
 const PINATA_CONFIG = {
     jwt: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3JtYXRpb24iOnsiaWQiOiJmMWIwODYwNS1iNDgwLTRmMWYtYjllZS1iMGZmOTY3YWI3NmEiLCJlbWFpbCI6ImtldmluYW5kcmUwNTA0QHVuaXRlYy5lZHUiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwicGluX3BvbGljeSI6eyJyZWdpb25zIjpbeyJkZXNpcmVkUmVwbGljYXRpb25Db3VudCI6MSwiaWQiOiJGUkExIn0seyJkZXNpcmVkUmVwbGljYXRpb25Db3VudCI6MSwiaWQiOiJOWUMxIn1dLCJ2ZXJzaW9uIjoxfSwibWZhX2VuYWJsZWQiOmZhbHNlLCJzdGF0dXMiOiJBQ1RJVkUifSwiYXV0aGVudGljYXRpb25UeXBlIjoic2NvcGVkS2V5Iiwic2NvcGVkS2V5S2V5IjoiZmYyOGEwZDU0NWRmMmZhZGMxZDkiLCJzY29wZWRLZXlTZWNyZXQiOiIzNzMzYjY2YTFmOGNiYzRhOTE5MDljYzQwNTNhNzlmNjY4YzVjMDkzZThkMzc0NzgwZjk0ZTdlZjkwZjc4YjE1IiwiZXhwIjoxNzk2NzAyNzA2fQ.cW4KzJhqfCsf9oM3VksoIM8Ds9k70oNkoWvTx5rPxcU',
-    
+
     gateway: 'https://ipfs.io/ipfs/',
-    
-    
+
+
     fallbackGateways: [
         'https://cloudflare-ipfs.com/ipfs/',
         'https://dweb.link/ipfs/',
         'https://gateway.pinata.cloud/ipfs/'
     ],
-    
+
     api: {
         base: 'https://api.pinata.cloud',
         pinFile: 'https://api.pinata.cloud/pinning/pinFileToIPFS',
@@ -37,7 +37,7 @@ class PinataService {
     // Subir archivo de texto a Pinata
     async uploadFile(content, fileName, options = {}) {
         this.checkConfiguration();
-        
+
         try {
             const formData = new FormData();
             formData.append('file', new Blob([content], { type: 'text/plain' }), fileName);
@@ -70,7 +70,7 @@ class PinataService {
     // Subir JSON a Pinata
     async uploadJSON(jsonData, options = {}) {
         this.checkConfiguration();
-        
+
         try {
             const data = {
                 pinataContent: jsonData
@@ -106,12 +106,12 @@ class PinataService {
     async loadFile(hash) {
         // Lista de gateways a intentar (principal + fallbacks)
         const gateways = [this.config.gateway, ...this.config.fallbackGateways];
-        
+
         for (let i = 0; i < gateways.length; i++) {
             const gateway = gateways[i];
             try {
                 console.log(`🔄 Intentando cargar desde: ${gateway}${hash}`);
-                
+
                 const response = await fetch(`${gateway}${hash}`, {
                     method: 'GET',
                     headers: {
@@ -120,7 +120,7 @@ class PinataService {
                     // Timeout de 10 segundos
                     signal: AbortSignal.timeout(10000)
                 });
-                
+
                 if (!response.ok) {
                     throw new Error(`HTTP ${response.status}: ${response.statusText}`);
                 }
@@ -128,16 +128,16 @@ class PinataService {
                 const content = await response.text();
                 console.log(`✅ Archivo cargado exitosamente desde: ${gateway}`);
                 return content;
-                
+
             } catch (error) {
                 console.warn(`❌ Error con gateway ${gateway}:`, error.message);
-                
+
                 // Si es el último gateway, lanzar el error
                 if (i === gateways.length - 1) {
                     console.error('🔥 Todos los gateways fallaron');
                     throw new Error(`No se pudo cargar el archivo desde ningún gateway. Último error: ${error.message}`);
                 }
-                
+
                 // Continuar con el siguiente gateway
                 continue;
             }
@@ -147,12 +147,12 @@ class PinataService {
     // Cargar JSON desde IPFS con fallbacks
     async loadJSON(hash) {
         const gateways = [this.config.gateway, ...this.config.fallbackGateways];
-        
+
         for (let i = 0; i < gateways.length; i++) {
             const gateway = gateways[i];
             try {
                 console.log(`🔄 Intentando cargar JSON desde: ${gateway}${hash}`);
-                
+
                 const response = await fetch(`${gateway}${hash}`, {
                     method: 'GET',
                     headers: {
@@ -160,7 +160,7 @@ class PinataService {
                     },
                     signal: AbortSignal.timeout(10000)
                 });
-                
+
                 if (!response.ok) {
                     throw new Error(`HTTP ${response.status}: ${response.statusText}`);
                 }
@@ -168,15 +168,15 @@ class PinataService {
                 const json = await response.json();
                 console.log(`✅ JSON cargado exitosamente desde: ${gateway}`);
                 return json;
-                
+
             } catch (error) {
                 console.warn(`❌ Error con gateway ${gateway}:`, error.message);
-                
+
                 if (i === gateways.length - 1) {
                     console.error('🔥 Todos los gateways fallaron para JSON');
                     throw new Error(`No se pudo cargar el JSON desde ningún gateway. Último error: ${error.message}`);
                 }
-                
+
                 continue;
             }
         }
@@ -185,7 +185,7 @@ class PinataService {
     // Listar archivos anclados
     async listPinnedFiles(options = {}) {
         this.checkConfiguration();
-        
+
         try {
             const params = new URLSearchParams({
                 status: 'pinned',
@@ -214,7 +214,7 @@ class PinataService {
     // Desanclar archivo
     async unpinFile(hash) {
         this.checkConfiguration();
-        
+
         try {
             const response = await fetch(`${this.config.api.unpin}/${hash}`, {
                 method: 'DELETE',

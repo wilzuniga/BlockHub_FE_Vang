@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Colaboradores - BlockHub</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+        rel="stylesheet">
+
     <style>
         :root {
             --primary-color: #013EFB;
@@ -52,8 +54,15 @@
         }
 
         @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
         }
 
         /* Floating cubes animation */
@@ -95,19 +104,24 @@
         }
 
         @keyframes bgCubeFloat {
-            0%, 100% { 
+
+            0%,
+            100% {
                 transform: translateY(0px) rotate(0deg) scale(1);
                 opacity: 0.4;
             }
-            25% { 
+
+            25% {
                 transform: translateY(-15px) rotate(45deg) scale(1.1);
                 opacity: 0.6;
             }
-            50% { 
+
+            50% {
                 transform: translateY(-30px) rotate(90deg) scale(0.9);
                 opacity: 0.3;
             }
-            75% { 
+
+            75% {
                 transform: translateY(-15px) rotate(135deg) scale(1.05);
                 opacity: 0.5;
             }
@@ -145,8 +159,15 @@
         }
 
         @keyframes slideDown {
-            from { transform: translateX(-50%) translateY(-100px); opacity: 0; }
-            to { transform: translateX(-50%) translateY(0); opacity: 1; }
+            from {
+                transform: translateX(-50%) translateY(-100px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(-50%) translateY(0);
+                opacity: 1;
+            }
         }
 
         .nav-container {
@@ -221,8 +242,15 @@
         }
 
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(50px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .section h2 {
@@ -504,8 +532,13 @@
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         .empty-state {
@@ -588,8 +621,13 @@
         }
 
         @keyframes modalFadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         .modal-content {
@@ -816,13 +854,23 @@
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         @keyframes loading {
-            0% { left: -100%; }
-            100% { left: 100%; }
+            0% {
+                left: -100%;
+            }
+
+            100% {
+                left: 100%;
+            }
         }
 
         /* Deposit Modal Specific Styles */
@@ -835,13 +883,14 @@
         }
 
         @keyframes modalSlideIn {
-            from { 
-                opacity: 0; 
-                transform: translateY(-50px) scale(0.9); 
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.9);
             }
-            to { 
-                opacity: 1; 
-                transform: translateY(0) scale(1); 
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
             }
         }
 
@@ -1001,12 +1050,13 @@
                 width: 95%;
             }
         }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .nav-menu {
                 display: none;
             }
-            
+
             .navbar {
                 width: 95%;
                 padding: 12px 20px;
@@ -1031,6 +1081,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="bg-animation">
         <div class="bg-cube"></div>
@@ -1050,84 +1101,80 @@
                 <li><a href="editor-archivos.html">Editor</a></li>
                 <li><a href="colaboradores.html" style="color: var(--secondary-color);">Colaboradores</a></li>
             </ul>
-                </div>
+        </div>
     </nav>
 
     <div class="main-container">
         <div class="content-wrapper">
-        <!-- Estadísticas -->
-        <div class="section glass">
-            <h2>📊 Estadísticas de Repositorios</h2>
-            <div class="stats-bar glass-dark">
-                <div class="stat-item glass">
-                    <div id="totalRepos" class="stat-number">0</div>
-                    <div class="stat-label">Total Repositorios</div>
-                </div>
-                <div class="stat-item glass">
-                    <div id="uniqueOwners" class="stat-number">0</div>
-                    <div class="stat-label">Propietarios Únicos</div>
-                </div>
-                <div class="stat-item glass">
-                    <div id="myRepos" class="stat-number">0</div>
-                    <div class="stat-label">Mis Repositorios</div>
+            <!-- Estadísticas -->
+            <div class="section glass">
+                <h2>📊 Estadísticas de Repositorios</h2>
+                <div class="stats-bar glass-dark">
+                    <div class="stat-item glass">
+                        <div id="totalRepos" class="stat-number">0</div>
+                        <div class="stat-label">Total Repositorios</div>
+                    </div>
+                    <div class="stat-item glass">
+                        <div id="uniqueOwners" class="stat-number">0</div>
+                        <div class="stat-label">Propietarios Únicos</div>
+                    </div>
+                    <div class="stat-item glass">
+                        <div id="myRepos" class="stat-number">0</div>
+                        <div class="stat-label">Mis Repositorios</div>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Controles -->
-        <div class="section glass">
-            <h2>🔍 Explorar Repositorios</h2>
-            <div class="controls glass-dark">
-                <div class="search-bar">
-                    <input 
-                        type="text" 
-                        id="searchInput" 
-                        class="search-input" 
-                        placeholder="Buscar por nombre de repositorio o dirección del propietario..."
-                    >
-                    <button class="btn btn-primary" onclick="searchRepositories()">
-                        🔍 Buscar
+            <!-- Controles -->
+            <div class="section glass">
+                <h2>🔍 Explorar Repositorios</h2>
+                <div class="controls glass-dark">
+                    <div class="search-bar">
+                        <input type="text" id="searchInput" class="search-input"
+                            placeholder="Buscar por nombre de repositorio o dirección del propietario...">
+                        <button class="btn btn-primary" onclick="searchRepositories()">
+                            🔍 Buscar
+                        </button>
+                    </div>
+                    <select id="filterSelect" class="filter-select" onchange="filterRepositories()">
+                        <option value="all">Todos los repositorios</option>
+                        <option value="mine">Mis repositorios</option>
+                        <option value="others">De otros propietarios</option>
+                        <option value="recent">Más recientes</option>
+                    </select>
+                    <button class="btn btn-secondary" onclick="refreshRepositories()">
+                        🔄 Actualizar
                     </button>
                 </div>
-                <select id="filterSelect" class="filter-select" onchange="filterRepositories()">
-                    <option value="all">Todos los repositorios</option>
-                    <option value="mine">Mis repositorios</option>
-                    <option value="others">De otros propietarios</option>
-                    <option value="recent">Más recientes</option>
-                </select>
-                <button class="btn btn-secondary" onclick="refreshRepositories()">
-                    🔄 Actualizar
-                </button>
-            </div>
 
-            <!-- Estado de carga -->
-            <div id="loadingState" class="loading-state" style="display: none;">
-                <div class="loading-spinner"></div>
-                <p>Cargando repositorios desde blockchain...</p>
-            </div>
+                <!-- Estado de carga -->
+                <div id="loadingState" class="loading-state" style="display: none;">
+                    <div class="loading-spinner"></div>
+                    <p>Cargando repositorios desde blockchain...</p>
+                </div>
 
-            <!-- Estado de error -->
-            <div id="errorState" class="error-state" style="display: none;">
-                <h3>❌ Error cargando repositorios</h3>
-                <p id="errorMessage"></p>
-                <button class="btn" onclick="refreshRepositories()">
-                    🔄 Reintentar
-                </button>
-            </div>
+                <!-- Estado de error -->
+                <div id="errorState" class="error-state" style="display: none;">
+                    <h3>❌ Error cargando repositorios</h3>
+                    <p id="errorMessage"></p>
+                    <button class="btn" onclick="refreshRepositories()">
+                        🔄 Reintentar
+                    </button>
+                </div>
 
-            <!-- Estado vacío -->
-            <div id="emptyState" class="empty-state" style="display: none;">
-                <h3>📭 No hay repositorios</h3>
-                <p>No se encontraron repositorios que coincidan con los criterios de búsqueda.</p>
-                <button class="btn" onclick="goToEditor()">
-                    📝 Crear primer repositorio
-                </button>
-            </div>
+                <!-- Estado vacío -->
+                <div id="emptyState" class="empty-state" style="display: none;">
+                    <h3>📭 No hay repositorios</h3>
+                    <p>No se encontraron repositorios que coincidan con los criterios de búsqueda.</p>
+                    <button class="btn" onclick="goToEditor()">
+                        📝 Crear primer repositorio
+                    </button>
+                </div>
 
-            <!-- Grid de repositorios -->
-            <div id="reposGrid" class="repos-grid">
-                <!-- Los repositorios se cargarán aquí dinámicamente -->
-            </div>
+                <!-- Grid de repositorios -->
+                <div id="reposGrid" class="repos-grid">
+                    <!-- Los repositorios se cargarán aquí dinámicamente -->
+                </div>
             </div>
         </div>
     </div>
@@ -1186,214 +1233,214 @@
         // Inicialización
         document.addEventListener('DOMContentLoaded', async () => {
             console.log('🚀 Inicializando página de colaboradores...');
-            
-                         // Verificar servicios disponibles - misma lógica del editor
-             try {
-                 // Verificar que los servicios estén disponibles
-                 if (typeof window.blockHubWeb3 === 'undefined') {
-                     throw new Error('window.blockHubWeb3 no está disponible. Verifica que web3-contract-integration.js se cargó correctamente.');
-                 }
-                 if (typeof window.pinataService === 'undefined') {
-                     throw new Error('window.pinataService no está disponible. Verifica que pinata-config.js se cargó correctamente.');
-                 }
-                 
-                 console.log('✅ window.blockHubWeb3 disponible');
-                 console.log('✅ window.pinataService disponible');
-                
+
+            // Verificar servicios disponibles - misma lógica del editor
+            try {
+                // Verificar que los servicios estén disponibles
+                if (typeof window.blockHubWeb3 === 'undefined') {
+                    throw new Error('window.blockHubWeb3 no está disponible. Verifica que web3-contract-integration.js se cargó correctamente.');
+                }
+                if (typeof window.pinataService === 'undefined') {
+                    throw new Error('window.pinataService no está disponible. Verifica que pinata-config.js se cargó correctamente.');
+                }
+
+                console.log('✅ window.blockHubWeb3 disponible');
+                console.log('✅ window.pinataService disponible');
+
                 // Conectar automáticamente si es posible
                 await initializeConnection();
-                
+
                 // Cargar repositorios
                 await loadRepositories();
-                
+
                 // Configurar búsqueda en tiempo real
                 setupSearchHandlers();
-                
+
             } catch (error) {
                 console.error('❌ Error en inicialización:', error);
                 showError('Error inicializando la aplicación: ' + error.message);
             }
         });
 
-                // Inicializar conexión - simplificado para colaboradores
-         async function initializeConnection() {
-             try {
-                 console.log('🔍 Verificando conexión Web3...');
-                 
-                 if (typeof window.ethereum === 'undefined') {
-                     throw new Error('MetaMask no detectado');
-                 }
+        // Inicializar conexión - simplificado para colaboradores
+        async function initializeConnection() {
+            try {
+                console.log('🔍 Verificando conexión Web3...');
 
-                 // Verificar si ya hay cuentas conectadas
-                 const accounts = await window.ethereum.request({ 
-                     method: 'eth_accounts' 
-                 });
+                if (typeof window.ethereum === 'undefined') {
+                    throw new Error('MetaMask no detectado');
+                }
 
-                 if (accounts.length > 0) {
-                     // Inicializar Web3 service
-                     await window.blockHubWeb3.initializeWeb3();
-                     web3Connected = true;
-                     
-                     // Obtener info de cuenta
-                     const accountInfo = window.blockHubWeb3.getAccountInfo();
-                     currentAccount = accountInfo.account;
-                     
-                     console.log('✅ Conectado automáticamente:', currentAccount);
-                     console.log('🔗 Estado: Web3 conectado desde página anterior');
-                 } else {
-                     console.log('⚠️ No hay cuentas conectadas');
-                     console.log('💡 Sugerencia: Ve a la página de Wallet para conectar MetaMask');
-                 }
+                // Verificar si ya hay cuentas conectadas
+                const accounts = await window.ethereum.request({
+                    method: 'eth_accounts'
+                });
 
-                 // Escuchar cambios de cuenta
-                 window.ethereum.on('accountsChanged', handleAccountsChanged);
-                 window.ethereum.on('chainChanged', handleChainChanged);
+                if (accounts.length > 0) {
+                    // Inicializar Web3 service
+                    await window.blockHubWeb3.initializeWeb3();
+                    web3Connected = true;
 
-             } catch (error) {
-                 console.error('❌ Error verificando conexión:', error);
-                 console.log('⚠️ Para acceder a funcionalidades Web3, conecta tu wallet primero');
-             }
-         }
+                    // Obtener info de cuenta
+                    const accountInfo = window.blockHubWeb3.getAccountInfo();
+                    currentAccount = accountInfo.account;
 
-                 // Cargar repositorios
-         async function loadRepositories() {
-             try {
-                 showLoading(true);
-                 hideError();
-                 hideEmpty();
+                    console.log('✅ Conectado automáticamente:', currentAccount);
+                    console.log('🔗 Estado: Web3 conectado desde página anterior');
+                } else {
+                    console.log('⚠️ No hay cuentas conectadas');
+                    console.log('💡 Sugerencia: Ve a la página de Wallet para conectar MetaMask');
+                }
 
-                 if (!web3Connected) {
-                     throw new Error('Web3 no conectado');
-                 }
+                // Escuchar cambios de cuenta
+                window.ethereum.on('accountsChanged', handleAccountsChanged);
+                window.ethereum.on('chainChanged', handleChainChanged);
 
-                 console.log('📋 Llamando getAllRepos() sin parámetros usando window.blockHubWeb3...');
-                 
-                 // Usar window.blockHubWeb3 directamente como en el editor
-                 let result;
-                 
-                 try {
-                     // Verificar que el contrato esté disponible
-                     if (!window.blockHubWeb3.repoFactoryContract) {
-                         throw new Error('Contrato RepoFactory no disponible');
-                     }
-                     
-                     console.log('🔍 Debug del contrato:', {
-                         contractAvailable: !!window.blockHubWeb3.repoFactoryContract,
-                         contractAddress: window.blockHubWeb3.repoFactoryContract.address,
-                         getAllReposAvailable: !!(window.blockHubWeb3.repoFactoryContract.getAllRepos),
-                         isInitialized: !!window.blockHubWeb3.isInitialized,
-                         currentAccount: currentAccount
-                     });
-                     
-                     // Verificar red y contrato
-                     const network = await window.blockHubWeb3.web3.eth.net.getId();
-                     console.log('🌐 Red actual:', network);
-                     console.log('📍 Dirección del contrato:', window.blockHubWeb3.repoFactoryContract.address);
-                     
-                     // Verificar si el contrato existe en esta dirección
-                     const code = await window.blockHubWeb3.web3.eth.getCode(window.blockHubWeb3.repoFactoryContract.address);
-                     console.log('🔍 Código del contrato:', code.length > 2 ? 'Existe' : 'No existe');
-                     
-                     if (code === '0x') {
-                         throw new Error(`No hay contrato desplegado en ${window.blockHubWeb3.repoFactoryContract.address} en la red ${network}`);
-                     }
-                     
-                     // Llamar directamente al contrato usando Ethers.js
-                     if (window.blockHubWeb3.repoFactoryContract.getAllRepos) {
-                         console.log('📦 Llamando contract.getAllRepos() directamente...');
-                         result = await window.blockHubWeb3.repoFactoryContract.getAllRepos();
-                         console.log('✅ Resultado getAllRepos():', result);
-                     } else {
-                         throw new Error('Función getAllRepos() no disponible en el contrato');
-                     }
-                 } catch (contractError) {
-                     console.error('❌ Error llamando contrato:', contractError);
-                     
-                     // Información adicional para debugging
-                     if (contractError.code === 'CALL_EXCEPTION') {
-                         console.error('🔍 Detalles del error CALL_EXCEPTION:');
-                         console.error('  - Method:', contractError.method);
-                         console.error('  - Data:', contractError.data);
-                         console.error('  - Reason:', contractError.reason);
-                         console.error('  - ErrorArgs:', contractError.errorArgs);
-                         
-                         // Sugerir posibles causas
-                         console.error('🔍 Posibles causas:');
-                         console.error('  1. Contrato no desplegado en esta red');
-                         console.error('  2. Dirección del contrato incorrecta');
-                         console.error('  3. Función getAllRepos() no existe en el contrato');
-                         console.error('  4. El contrato no tiene repositorios (puede ser normal)');
-                     }
-                     
-                     throw new Error(`Error del contrato: ${contractError.message}`);
-                 }
+            } catch (error) {
+                console.error('❌ Error verificando conexión:', error);
+                console.log('⚠️ Para acceder a funcionalidades Web3, conecta tu wallet primero');
+            }
+        }
 
-                 // Verificar si el resultado es válido
-                 if (!result) {
-                     console.log('📭 No hay resultado del contrato');
-                     allRepositories = [];
-                 } else if (!Array.isArray(result)) {
-                     console.log('📭 Resultado no es array:', result);
-                     allRepositories = [];
-                 } else if (result.length < 4) {
-                     console.log('📭 Resultado incompleto:', result);
-                     allRepositories = [];
-                 } else {
-                     // Procesar resultado: [folderCIDs, tokens, owners, names]
-                     const [folderCIDs, tokens, owners, names] = result;
-                     
-                     console.log('📊 Datos del contrato:');
-                     console.log('  folderCIDs:', folderCIDs);
-                     console.log('  tokens:', tokens);
-                     console.log('  owners:', owners);
-                     console.log('  names:', names);
+        // Cargar repositorios
+        async function loadRepositories() {
+            try {
+                showLoading(true);
+                hideError();
+                hideEmpty();
 
-                     // Verificar si hay repositorios
-                     if (!folderCIDs || folderCIDs.length === 0) {
-                         console.log('📭 No hay repositorios en el contrato (esto es normal si no se han creado)');
-                         allRepositories = [];
-                     } else {
-                         // Convertir a formato de repositorios
-                         allRepositories = [];
-                         for (let i = 0; i < folderCIDs.length; i++) {
-                             allRepositories.push({
-                                 tokenId: tokens[i].toString(),
-                                 name: names[i],
-                                 cid: folderCIDs[i],
-                                 owner: owners[i],
-                                 index: i
-                             });
-                         }
-                     }
-                 }
+                if (!web3Connected) {
+                    throw new Error('Web3 no conectado');
+                }
 
-                 filteredRepositories = [...allRepositories];
+                console.log('📋 Llamando getAllRepos() sin parámetros usando window.blockHubWeb3...');
 
-                 console.log(`✅ Procesados ${allRepositories.length} repositorios desde blockchain`);
-                 
-                 // Actualizar estadísticas
-                 updateStats();
-                 
-                 // Renderizar repositorios
-                 renderRepositories();
-                 
-                 // Aplicar filtro actual
-                 filterRepositories();
+                // Usar window.blockHubWeb3 directamente como en el editor
+                let result;
 
-             } catch (error) {
-                 console.error('❌ Error cargando repositorios:', error);
-                 showError(error.message);
-             } finally {
-                 showLoading(false);
-             }
-         }
+                try {
+                    // Verificar que el contrato esté disponible
+                    if (!window.blockHubWeb3.repoFactoryContract) {
+                        throw new Error('Contrato RepoFactory no disponible');
+                    }
+
+                    console.log('🔍 Debug del contrato:', {
+                        contractAvailable: !!window.blockHubWeb3.repoFactoryContract,
+                        contractAddress: window.blockHubWeb3.repoFactoryContract.address,
+                        getAllReposAvailable: !!(window.blockHubWeb3.repoFactoryContract.getAllRepos),
+                        isInitialized: !!window.blockHubWeb3.isInitialized,
+                        currentAccount: currentAccount
+                    });
+
+                    // Verificar red y contrato
+                    const network = await window.blockHubWeb3.web3.eth.net.getId();
+                    console.log('🌐 Red actual:', network);
+                    console.log('📍 Dirección del contrato:', window.blockHubWeb3.repoFactoryContract.address);
+
+                    // Verificar si el contrato existe en esta dirección
+                    const code = await window.blockHubWeb3.web3.eth.getCode(window.blockHubWeb3.repoFactoryContract.address);
+                    console.log('🔍 Código del contrato:', code.length > 2 ? 'Existe' : 'No existe');
+
+                    if (code === '0x') {
+                        throw new Error(`No hay contrato desplegado en ${window.blockHubWeb3.repoFactoryContract.address} en la red ${network}`);
+                    }
+
+                    // Llamar directamente al contrato usando Ethers.js
+                    if (window.blockHubWeb3.repoFactoryContract.getAllRepos) {
+                        console.log('📦 Llamando contract.getAllRepos() directamente...');
+                        result = await window.blockHubWeb3.repoFactoryContract.getAllRepos();
+                        console.log('✅ Resultado getAllRepos():', result);
+                    } else {
+                        throw new Error('Función getAllRepos() no disponible en el contrato');
+                    }
+                } catch (contractError) {
+                    console.error('❌ Error llamando contrato:', contractError);
+
+                    // Información adicional para debugging
+                    if (contractError.code === 'CALL_EXCEPTION') {
+                        console.error('🔍 Detalles del error CALL_EXCEPTION:');
+                        console.error('  - Method:', contractError.method);
+                        console.error('  - Data:', contractError.data);
+                        console.error('  - Reason:', contractError.reason);
+                        console.error('  - ErrorArgs:', contractError.errorArgs);
+
+                        // Sugerir posibles causas
+                        console.error('🔍 Posibles causas:');
+                        console.error('  1. Contrato no desplegado en esta red');
+                        console.error('  2. Dirección del contrato incorrecta');
+                        console.error('  3. Función getAllRepos() no existe en el contrato');
+                        console.error('  4. El contrato no tiene repositorios (puede ser normal)');
+                    }
+
+                    throw new Error(`Error del contrato: ${contractError.message}`);
+                }
+
+                // Verificar si el resultado es válido
+                if (!result) {
+                    console.log('📭 No hay resultado del contrato');
+                    allRepositories = [];
+                } else if (!Array.isArray(result)) {
+                    console.log('📭 Resultado no es array:', result);
+                    allRepositories = [];
+                } else if (result.length < 4) {
+                    console.log('📭 Resultado incompleto:', result);
+                    allRepositories = [];
+                } else {
+                    // Procesar resultado: [folderCIDs, tokens, owners, names]
+                    const [folderCIDs, tokens, owners, names] = result;
+
+                    console.log('📊 Datos del contrato:');
+                    console.log('  folderCIDs:', folderCIDs);
+                    console.log('  tokens:', tokens);
+                    console.log('  owners:', owners);
+                    console.log('  names:', names);
+
+                    // Verificar si hay repositorios
+                    if (!folderCIDs || folderCIDs.length === 0) {
+                        console.log('📭 No hay repositorios en el contrato (esto es normal si no se han creado)');
+                        allRepositories = [];
+                    } else {
+                        // Convertir a formato de repositorios
+                        allRepositories = [];
+                        for (let i = 0; i < folderCIDs.length; i++) {
+                            allRepositories.push({
+                                tokenId: tokens[i].toString(),
+                                name: names[i],
+                                cid: folderCIDs[i],
+                                owner: owners[i],
+                                index: i
+                            });
+                        }
+                    }
+                }
+
+                filteredRepositories = [...allRepositories];
+
+                console.log(`✅ Procesados ${allRepositories.length} repositorios desde blockchain`);
+
+                // Actualizar estadísticas
+                updateStats();
+
+                // Renderizar repositorios
+                renderRepositories();
+
+                // Aplicar filtro actual
+                filterRepositories();
+
+            } catch (error) {
+                console.error('❌ Error cargando repositorios:', error);
+                showError(error.message);
+            } finally {
+                showLoading(false);
+            }
+        }
 
         // Actualizar estadísticas
         function updateStats() {
             const totalRepos = allRepositories.length;
             const uniqueOwners = new Set(allRepositories.map(repo => repo.owner)).size;
-            const myRepos = currentAccount ? 
-                allRepositories.filter(repo => 
+            const myRepos = currentAccount ?
+                allRepositories.filter(repo =>
                     repo.owner.toLowerCase() === currentAccount.toLowerCase()
                 ).length : 0;
 
@@ -1405,14 +1452,14 @@
         // Renderizar repositorios
         function renderRepositories() {
             const grid = document.getElementById('reposGrid');
-            
+
             if (filteredRepositories.length === 0) {
                 showEmpty();
                 return;
             }
 
             hideEmpty();
-            
+
             grid.innerHTML = filteredRepositories.map(repo => `
                 <div class="repo-card" data-token-id="${repo.tokenId}">
                     <div class="repo-header">
@@ -1464,9 +1511,9 @@
         function filterRepositories() {
             const filter = document.getElementById('filterSelect').value;
             const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            
+
             let filtered = [...allRepositories];
-            
+
             // Aplicar filtro por tipo
             switch (filter) {
                 case 'mine':
@@ -1479,16 +1526,16 @@
                     filtered = filtered.sort((a, b) => b.tokenId - a.tokenId);
                     break;
             }
-            
+
             // Aplicar filtro de búsqueda
             if (searchTerm) {
-                filtered = filtered.filter(repo => 
+                filtered = filtered.filter(repo =>
                     repo.name.toLowerCase().includes(searchTerm) ||
                     repo.owner.toLowerCase().includes(searchTerm) ||
                     repo.cid.toLowerCase().includes(searchTerm)
                 );
             }
-            
+
             filteredRepositories = filtered;
             renderRepositories();
         }
@@ -1501,7 +1548,7 @@
         // Configurar manejadores de búsqueda
         function setupSearchHandlers() {
             const searchInput = document.getElementById('searchInput');
-            
+
             // Búsqueda en tiempo real con debounce
             let searchTimeout;
             searchInput.addEventListener('input', () => {
@@ -1510,7 +1557,7 @@
                     filterRepositories();
                 }, 300);
             });
-            
+
             // Búsqueda al presionar Enter
             searchInput.addEventListener('keypress', (e) => {
                 if (e.key === 'Enter') {
@@ -1523,38 +1570,38 @@
         async function getLatestApprovedCommitCid(tokenId, originalCid) {
             try {
                 console.log(`🔍 Buscando último commit aprobado para repositorio ${tokenId}...`);
-                
+
                 // Verificar conexión
                 if (!window.blockHubWeb3 || !window.blockHubWeb3.repoFactoryContract) {
                     console.log('⚠️ Web3 no conectado, usando CID original');
                     return originalCid;
                 }
-                
+
                 // Obtener todos los commits del repositorio
                 const commitsData = await window.blockHubWeb3.repoFactoryContract.retrieveCommits(tokenId);
                 const [messages, timestamps, committers, statuses, commitCIDs] = commitsData;
-                
+
                 if (!statuses || statuses.length === 0) {
                     console.log('📭 No hay commits, usando CID original');
                     return originalCid;
                 }
-                
+
                 // Buscar el último commit aprobado (status = 1) con su CID específico
                 let latestApprovedCid = null;
                 let latestApprovedTimestamp = 0;
-                
+
                 for (let i = 0; i < statuses.length; i++) {
                     const status = parseInt(statuses[i].toString());
                     const timestamp = parseInt(timestamps[i].toString());
                     const cid = commitCIDs && commitCIDs[i] ? commitCIDs[i] : null;
-                    
+
                     // Si es aprobado (status = 1), más reciente, y tiene CID
                     if (status === 1 && timestamp > latestApprovedTimestamp && cid) {
                         latestApprovedCid = cid;
                         latestApprovedTimestamp = timestamp;
                     }
                 }
-                
+
                 if (latestApprovedCid) {
                     console.log(`✅ Último commit aprobado encontrado: ${latestApprovedCid}`);
                     console.log(`📅 Fecha: ${new Date(latestApprovedTimestamp * 1000).toLocaleString()}`);
@@ -1563,7 +1610,7 @@
                     console.log('📭 No hay commits aprobados con CID, usando CID original');
                     return originalCid;
                 }
-                
+
             } catch (error) {
                 console.error('❌ Error obteniendo último commit:', error);
                 console.log('⚠️ Fallback: usando CID original');
@@ -1575,24 +1622,24 @@
         async function viewRepository(tokenId, originalCid, name) {
             try {
                 console.log(`👁️ Viendo repositorio: ${name} (${tokenId})`);
-                
+
                 showLoading(true, 'Obteniendo último commit...');
-                
+
                 // 1. Obtener el CID del último commit aprobado
                 const latestCid = await getLatestApprovedCommitCid(tokenId, originalCid);
-                
+
                 showLoading(true, 'Cargando archivos desde IPFS...');
-                
+
                 // 2. Cargar archivos desde IPFS usando el CID más reciente
                 const files = await window.pinataService.loadFromIPFS(latestCid);
-                
+
                 if (files && files.length > 0) {
                     // Crear una nueva ventana o modal para mostrar archivos
                     showFilesModal(name, files, tokenId, latestCid);
                 } else {
                     alert('❌ No se pudieron cargar los archivos del repositorio');
                 }
-                
+
             } catch (error) {
                 console.error('❌ Error viendo repositorio:', error);
                 alert('Error cargando repositorio: ' + error.message);
@@ -1605,29 +1652,29 @@
         async function collaborateInRepo(tokenId, originalCid, name) {
             try {
                 console.log(`🤝 Iniciando colaboración en: ${name} (${tokenId})`);
-                
+
                 // Verificar que tenemos conexión
                 if (!currentAccount) {
                     alert('❌ Necesitas conectar tu wallet para colaborar');
                     return;
                 }
-                
+
                 // Obtener el CID del último commit aprobado
                 showLoading(true, 'Obteniendo última versión...');
                 const latestCid = await getLatestApprovedCommitCid(tokenId, originalCid);
-                
+
                 // Cargar archivos del repositorio
                 showLoading(true, 'Preparando entorno de colaboración...');
-                
+
                 const files = await window.pinataService.loadFromIPFS(latestCid);
-                
+
                 if (files && files.length > 0) {
                     // Abrir editor de colaboración usando el CID más reciente
                     openCollaborationEditor(tokenId, latestCid, name, files);
                 } else {
                     alert('❌ No se pudieron cargar los archivos para colaborar');
                 }
-                
+
             } catch (error) {
                 console.error('❌ Error iniciando colaboración:', error);
                 alert('Error preparando colaboración: ' + error.message);
@@ -1640,7 +1687,7 @@
         function openCollaborationEditor(tokenId, originalCid, name, files) {
             const modal = document.getElementById('editModal');
             const content = document.getElementById('editContent');
-            
+
             // Crear interfaz de edición
             content.innerHTML = `
                 <div style="margin-bottom: 1rem;">
@@ -1653,9 +1700,9 @@
                         📁 Seleccionar archivo para editar:
                     </label>
                     <select id="fileSelect" style="width: 100%; padding: 10px; background: #000; color: #00ff00; border: 1px solid #333; border-radius: 5px;">
-                        ${files.map((file, index) => 
-                            `<option value="${index}">${file.name} (${file.size} bytes)</option>`
-                        ).join('')}
+                        ${files.map((file, index) =>
+                `<option value="${index}">${file.name} (${file.size} bytes)</option>`
+            ).join('')}
                     </select>
                 </div>
                 
@@ -1694,15 +1741,15 @@
                 <div id="collaborationStatus" style="margin-top: 1rem; padding: 10px; border-radius: 5px; display: none;">
                 </div>
             `;
-            
+
             // Cargar contenido del primer archivo
             loadFileContent(files, 0);
-            
+
             // Configurar cambio de archivo
             document.getElementById('fileSelect').addEventListener('change', (e) => {
                 loadFileContent(files, parseInt(e.target.value));
             });
-            
+
             modal.style.display = 'block';
         }
 
@@ -1711,15 +1758,15 @@
             try {
                 const file = files[index];
                 const textarea = document.getElementById('fileContent');
-                
+
                 textarea.value = 'Cargando...';
-                
+
                 if (file.content) {
                     textarea.value = file.content;
                 } else {
                     textarea.value = '// Archivo binario o contenido no disponible\n// Archivo: ' + file.name;
                 }
-                
+
             } catch (error) {
                 console.error('❌ Error cargando archivo:', error);
                 document.getElementById('fileContent').value = '// Error cargando archivo: ' + error.message;
@@ -1734,77 +1781,77 @@
                 const fileSelect = document.getElementById('fileSelect');
                 const fileIndex = parseInt(fileSelect.value);
                 const fileName = fileSelect.options[fileSelect.selectedIndex].text.split(' (')[0];
-                
+
                 if (!commitMessage) {
                     alert('❌ Debes proporcionar un mensaje de commit');
                     return;
                 }
-                
+
                 const statusDiv = document.getElementById('collaborationStatus');
                 statusDiv.style.display = 'block';
                 statusDiv.style.background = 'rgba(0, 255, 0, 0.1)';
                 statusDiv.style.color = '#00ff00';
                 statusDiv.innerHTML = '⏳ Procesando colaboración...';
-                
+
                 // 1. Crear nuevo archivo con cambios
                 console.log('📝 Subiendo archivo modificado a IPFS...');
                 const fileBlob = new Blob([fileContent], { type: 'text/plain' });
                 const file = new File([fileBlob], fileName, { type: 'text/plain' });
-                
+
                 statusDiv.innerHTML = '📤 Subiendo archivo a IPFS...';
-                                 const uploadResult = await window.pinataService.uploadFile(file);
-                
+                const uploadResult = await window.pinataService.uploadFile(file);
+
                 if (!uploadResult.success) {
                     throw new Error('Error subiendo archivo: ' + uploadResult.error);
                 }
-                
+
                 const newCid = uploadResult.hash;
                 console.log('✅ Archivo subido con CID:', newCid);
-                
-                                 // 2. Procesar commit en blockchain
-                 statusDiv.innerHTML = '⛓️ Enviando commit a blockchain...';
-                 console.log(`⛓️ Procesando commit: processNewCommit(${tokenId}, "${commitMessage}", "${newCid}")`);
-                 
-                 // Llamar directamente al contrato usando Ethers.js
-                 let commitResult;
-                 
-                 try {
-                     // Usar window.blockHubWeb3 directamente como en el editor
-                     if (!window.blockHubWeb3.repoFactoryContract) {
-                         throw new Error('Contrato RepoFactory no disponible');
-                     }
-                     
-                     if (window.blockHubWeb3.repoFactoryContract.processNewCommit) {
-                         console.log('📦 Llamando contract.processNewCommit() directamente...');
-                         const tx = await window.blockHubWeb3.repoFactoryContract.processNewCommit(tokenId, commitMessage, newCid);
-                         console.log('⏳ Transacción enviada:', tx.hash);
-                         
-                         const receipt = await tx.wait();
-                         console.log('✅ Transacción confirmada:', receipt);
-                         
-                         commitResult = {
-                             success: true,
-                             transactionHash: receipt.transactionHash,
-                             blockNumber: receipt.blockNumber,
-                             gasUsed: receipt.gasUsed.toString(),
-                             tokenId: tokenId,
-                             message: commitMessage,
-                             newCid: newCid
-                         };
-                     } else {
-                         throw new Error('Función processNewCommit() no disponible en el contrato');
-                     }
-                 } catch (contractError) {
-                     console.error('❌ Error en processNewCommit:', contractError);
-                     throw new Error(`Error del contrato: ${contractError.message}`);
-                 }
-                 
-                 if (!commitResult || !commitResult.success) {
-                     throw new Error('No se pudo procesar el commit');
-                 }
-                
+
+                // 2. Procesar commit en blockchain
+                statusDiv.innerHTML = '⛓️ Enviando commit a blockchain...';
+                console.log(`⛓️ Procesando commit: processNewCommit(${tokenId}, "${commitMessage}", "${newCid}")`);
+
+                // Llamar directamente al contrato usando Ethers.js
+                let commitResult;
+
+                try {
+                    // Usar window.blockHubWeb3 directamente como en el editor
+                    if (!window.blockHubWeb3.repoFactoryContract) {
+                        throw new Error('Contrato RepoFactory no disponible');
+                    }
+
+                    if (window.blockHubWeb3.repoFactoryContract.processNewCommit) {
+                        console.log('📦 Llamando contract.processNewCommit() directamente...');
+                        const tx = await window.blockHubWeb3.repoFactoryContract.processNewCommit(tokenId, commitMessage, newCid);
+                        console.log('⏳ Transacción enviada:', tx.hash);
+
+                        const receipt = await tx.wait();
+                        console.log('✅ Transacción confirmada:', receipt);
+
+                        commitResult = {
+                            success: true,
+                            transactionHash: receipt.transactionHash,
+                            blockNumber: receipt.blockNumber,
+                            gasUsed: receipt.gasUsed.toString(),
+                            tokenId: tokenId,
+                            message: commitMessage,
+                            newCid: newCid
+                        };
+                    } else {
+                        throw new Error('Función processNewCommit() no disponible en el contrato');
+                    }
+                } catch (contractError) {
+                    console.error('❌ Error en processNewCommit:', contractError);
+                    throw new Error(`Error del contrato: ${contractError.message}`);
+                }
+
+                if (!commitResult || !commitResult.success) {
+                    throw new Error('No se pudo procesar el commit');
+                }
+
                 console.log('🎉 ¡Commit procesado exitosamente!', commitResult);
-                
+
                 statusDiv.style.background = 'rgba(0, 255, 0, 0.2)';
                 statusDiv.innerHTML = `
                     🎉 ¡Commit enviado exitosamente!<br>
@@ -1812,13 +1859,13 @@
                     🔗 Nuevo CID: ${newCid}<br>
                     ⛽ Gas usado: ${commitResult.gasUsed}
                 `;
-                
+
                 // 3. Actualizar lista de repositorios
                 setTimeout(() => {
                     closeEditModal();
                     refreshRepositories();
                 }, 3000);
-                
+
             } catch (error) {
                 console.error('❌ Error en colaboración:', error);
                 const statusDiv = document.getElementById('collaborationStatus');
@@ -1833,7 +1880,7 @@
         function showFilesModal(name, files, tokenId, cid) {
             const modal = document.getElementById('editModal');
             const content = document.getElementById('editContent');
-            
+
             content.innerHTML = `
                 <div style="margin-bottom: 1rem;">
                     <h3 style="color: #00ff00;">📁 Archivos de: ${escapeHtml(name)}</h3>
@@ -1863,7 +1910,7 @@
                     </button>
                 </div>
             `;
-            
+
             modal.style.display = 'block';
         }
 
@@ -1893,18 +1940,18 @@
             if (!window.blockHubWeb3) {
                 return false;
             }
-            
+
             const accountInfo = window.blockHubWeb3.getAccountInfo();
             if (!accountInfo || !accountInfo.account) {
                 return false;
             }
-            
+
             // Comparar direcciones (case-insensitive)
             const currentAccount = accountInfo.account.toLowerCase();
             const repoOwner = repoOwnerAddress.toLowerCase();
-            
+
             console.log(`🔍 Verificando ownership: ${currentAccount} === ${repoOwner} ? ${currentAccount === repoOwner}`);
-            
+
             return currentAccount === repoOwner;
         }
 
@@ -1919,34 +1966,34 @@
         // Abrir repositorio en editor para hacer commit
         async function openInEditor(tokenId, originalCid, name) {
             try {
-            console.log(`📝 Abriendo en editor: ${name} (Token: ${tokenId})`);
-            
-            // Buscar información del repositorio para obtener el owner
-            const repo = allRepositories.find(r => r.tokenId === tokenId);
-            const owner = repo ? repo.owner : '';
-            
-            console.log(`👤 Owner encontrado: ${owner}`);
-            console.log(`📊 Repositorio encontrado:`, repo);
-            
+                console.log(`📝 Abriendo en editor: ${name} (Token: ${tokenId})`);
+
+                // Buscar información del repositorio para obtener el owner
+                const repo = allRepositories.find(r => r.tokenId === tokenId);
+                const owner = repo ? repo.owner : '';
+
+                console.log(`👤 Owner encontrado: ${owner}`);
+                console.log(`📊 Repositorio encontrado:`, repo);
+
                 // Obtener el CID del último commit aprobado
                 showStatus('🔍 Obteniendo último commit...', 'info');
                 const latestCid = await getLatestApprovedCommitCid(tokenId, originalCid);
-                
+
                 console.log(`📁 CID original: ${originalCid}`);
                 console.log(`🔄 CID más reciente: ${latestCid}`);
-                
+
                 // Crear URL con parámetros para el editor usando el CID más reciente
-            const editorUrl = new URL('editor-archivos.html', window.location.origin);
-            editorUrl.searchParams.set('mode', 'commit');
-            editorUrl.searchParams.set('tokenId', tokenId);
+                const editorUrl = new URL('editor-archivos.html', window.location.origin);
+                editorUrl.searchParams.set('mode', 'commit');
+                editorUrl.searchParams.set('tokenId', tokenId);
                 editorUrl.searchParams.set('cid', latestCid);  // ✅ Usar CID más reciente
-            editorUrl.searchParams.set('repoName', name);
-            editorUrl.searchParams.set('owner', owner);
-            
-            console.log('🔗 Redirigiendo a:', editorUrl.toString());
-            
+                editorUrl.searchParams.set('repoName', name);
+                editorUrl.searchParams.set('owner', owner);
+
+                console.log('🔗 Redirigiendo a:', editorUrl.toString());
+
                 window.location.href = editorUrl.toString();
-                
+
             } catch (error) {
                 console.error('❌ Error abriendo en editor:', error);
                 alert('❌ Error abriendo el editor: ' + error.message);
@@ -1967,10 +2014,10 @@
                 'warning': '⚠️',
                 'error': '❌'
             };
-            
+
             const icon = statusTypes[type] || '📌';
             console.log(`${icon} ${message}`);
-            
+
             // Opcional: mostrar en UI si hay un elemento disponible
             const statusEl = document.getElementById('searchStatus');
             if (statusEl) {
@@ -1980,7 +2027,7 @@
                     statusEl.textContent = '';
                 }, 3000);
             }
-            
+
             // Opcional: actualizar algún indicador visual si es necesario
             // Pero por ahora solo logging ya que esta página se enfoca en los repositorios
         }
@@ -1988,14 +2035,14 @@
         function showLoading(show, message = 'Cargando...') {
             const loadingState = document.getElementById('loadingState');
             if (loadingState) {
-            if (show) {
-                loadingState.style.display = 'block';
+                if (show) {
+                    loadingState.style.display = 'block';
                     const messageEl = loadingState.querySelector('p');
                     if (messageEl) {
                         messageEl.textContent = message;
                     }
-            } else {
-                loadingState.style.display = 'none';
+                } else {
+                    loadingState.style.display = 'none';
                 }
             }
         }
@@ -2019,22 +2066,22 @@
             document.getElementById('emptyState').style.display = 'none';
         }
 
-                 // Manejadores de eventos
-         function handleAccountsChanged(accounts) {
-             if (accounts.length === 0) {
-                 currentAccount = null;
-                 web3Connected = false;
-                 console.log('❌ Wallet desconectado');
-             } else {
-                 currentAccount = accounts[0];
-                 web3Connected = true;
-                 console.log('✅ Cuenta cambiada:', `${currentAccount.substring(0, 6)}...${currentAccount.substring(38)}`);
-                 
-                 // Recargar repositorios para actualizar "Mis repositorios"
-                 updateStats();
-                 filterRepositories();
-             }
-         }
+        // Manejadores de eventos
+        function handleAccountsChanged(accounts) {
+            if (accounts.length === 0) {
+                currentAccount = null;
+                web3Connected = false;
+                console.log('❌ Wallet desconectado');
+            } else {
+                currentAccount = accounts[0];
+                web3Connected = true;
+                console.log('✅ Cuenta cambiada:', `${currentAccount.substring(0, 6)}...${currentAccount.substring(38)}`);
+
+                // Recargar repositorios para actualizar "Mis repositorios"
+                updateStats();
+                filterRepositories();
+            }
+        }
 
         function handleChainChanged(chainId) {
             console.log('🔄 Red cambiada:', chainId);
@@ -2045,27 +2092,27 @@
 
 
         // Función de debug para la consola
-        window.debugContract = async function() {
+        window.debugContract = async function () {
             console.log('🔍 === DEBUG CONTRATO ===');
-            
+
             try {
                 console.log('📍 Dirección del contrato:', window.blockHubWeb3.repoFactoryContract.address);
-                
+
                 const network = await window.blockHubWeb3.web3.eth.net.getId();
                 console.log('🌐 Red actual:', network);
-                
+
                 const code = await window.blockHubWeb3.web3.eth.getCode(window.blockHubWeb3.repoFactoryContract.address);
                 console.log('🔍 Código del contrato:', code.length > 2 ? 'Existe ✅' : 'No existe ❌');
-                
+
                 if (code === '0x') {
                     console.error('❌ NO HAY CONTRATO DESPLEGADO EN ESTA DIRECCIÓN');
                     return false;
                 }
-                
+
                 console.log('📋 Intentando llamar getAllRepos()...');
                 const result = await window.blockHubWeb3.repoFactoryContract.getAllRepos();
                 console.log('✅ Resultado getAllRepos():', result);
-                
+
                 return true;
             } catch (error) {
                 console.error('❌ Error en debug:', error);
@@ -2074,13 +2121,13 @@
         };
 
         // Cerrar modal al hacer clic fuera
-        window.onclick = function(event) {
+        window.onclick = function (event) {
             const modal = document.getElementById('editModal');
             if (event.target === modal) {
                 closeEditModal();
             }
         }
-        
+
         // === FUNCIONES DE DEPÓSITO ===
 
         let currentDepositTokenId = null;
@@ -2088,13 +2135,13 @@
         // Mostrar modal de depósito
         function showDepositModal(tokenId, repoName) {
             console.log(`💰 Abriendo modal de depósito para: ${repoName} (Token: ${tokenId})`);
-            
+
             currentDepositTokenId = tokenId;
-            
+
             // Actualizar información en el modal
             document.getElementById('depositRepoName').textContent = repoName;
             document.getElementById('depositTokenId').textContent = tokenId;
-            
+
             // Mostrar cuenta actual
             const accountInfo = window.blockHubWeb3?.getAccountInfo();
             if (accountInfo && accountInfo.account) {
@@ -2102,12 +2149,12 @@
             } else {
                 document.getElementById('depositAccount').textContent = 'No conectado';
             }
-            
+
             // Limpiar formulario
             document.getElementById('ethAmount').value = '';
             const statusDiv = document.getElementById('depositStatus');
             statusDiv.style.display = 'none';
-            
+
             // Mostrar modal
             document.getElementById('depositModal').style.display = 'block';
         }
@@ -2137,81 +2184,81 @@
                 const ethAmount = document.getElementById('ethAmount').value;
                 const statusDiv = document.getElementById('depositStatus');
                 const depositBtn = document.getElementById('depositBtn');
-                
+
                 // Validaciones
                 if (!currentDepositTokenId) {
                     throw new Error('Token ID no válido');
                 }
-                
+
                 if (!ethAmount || parseFloat(ethAmount) <= 0) {
                     throw new Error('Cantidad de ETH debe ser mayor a 0');
                 }
-                
+
                 if (parseFloat(ethAmount) < 0.0001) {
                     throw new Error('Cantidad mínima: 0.0001 ETH');
                 }
-                
+
                 // Verificar conexión
                 if (!window.blockHubWeb3 || !window.blockHubWeb3.repoFactoryContract) {
                     throw new Error('Web3 no conectado o contrato no disponible');
                 }
-                
+
                 console.log(`💰 Iniciando depósito: ${ethAmount} ETH al repositorio ${currentDepositTokenId}`);
-                
+
                 // Deshabilitar botón y mostrar estado
                 depositBtn.disabled = true;
                 depositBtn.innerHTML = '⏳ Preparando...';
                 statusDiv.textContent = '💰 Verificando información del depósito...';
                 statusDiv.className = 'status-message status-info';
                 statusDiv.style.display = 'block';
-                
+
                 // Llamar función de depósito con manejo de errores mejorado
                 const weiAmount = window.ethers.utils.parseEther(ethAmount);
                 console.log(`💰 Enviando ${ethAmount} ETH (${weiAmount.toString()} Wei)`);
-                
+
                 let tx;
                 let retryCount = 0;
                 const maxRetries = 3;
-                
+
                 while (retryCount < maxRetries) {
                     try {
-                        depositBtn.innerHTML = retryCount > 0 ? 
+                        depositBtn.innerHTML = retryCount > 0 ?
                             `🔄 Reintentando... (${retryCount + 1}/${maxRetries})` :
                             '🚀 Enviando...';
-                        statusDiv.textContent = retryCount > 0 ? 
+                        statusDiv.textContent = retryCount > 0 ?
                             `🔄 Reintentando transacción... (${retryCount + 1}/${maxRetries})` :
                             '📤 Enviando transacción a la blockchain...';
-                        
+
                         tx = await window.blockHubWeb3.repoFactoryContract.depositToRepo(
-                    currentDepositTokenId, 
-                            { 
+                            currentDepositTokenId,
+                            {
                                 value: weiAmount,
                                 gasLimit: 100000  // Gas límite específico para depósitos
                             }
-                );
-                
-                console.log('⏳ Transacción enviada:', tx.hash);
+                        );
+
+                        console.log('⏳ Transacción enviada:', tx.hash);
                         break; // Salir del loop si la transacción fue exitosa
-                        
+
                     } catch (txError) {
                         retryCount++;
                         console.warn(`⚠️ Intento ${retryCount} de depósito falló:`, txError.message);
-                        
+
                         if (retryCount >= maxRetries) {
                             throw txError; // Lanzar el error después de todos los intentos
                         }
-                        
+
                         // Esperar antes del siguiente intento
                         await new Promise(resolve => setTimeout(resolve, 2000));
                     }
                 }
-                
+
                 depositBtn.innerHTML = '⏳ Confirmando...';
                 statusDiv.textContent = `⏳ Esperando confirmación... TX: ${tx.hash.substring(0, 10)}...`;
-                
+
                 const receipt = await tx.wait();
                 console.log('✅ Depósito confirmado:', receipt);
-                
+
                 // Buscar evento depositedETH
                 const depositEvent = receipt.events?.find(e => e.event === 'depositedETH');
                 if (depositEvent) {
@@ -2222,27 +2269,27 @@
                         amount: window.ethers.utils.formatEther(amount) + ' ETH'
                     });
                 }
-                
+
                 depositBtn.innerHTML = '🎉 ¡Exitoso!';
                 statusDiv.textContent = `🎉 ¡Depósito de ${ethAmount} ETH completado exitosamente!`;
                 statusDiv.className = 'status-message status-success';
-                
+
                 // Resetear formulario después de un tiempo
                 setTimeout(() => {
                     closeDepositModal();
                     // Opcional: recargar lista de repositorios para mostrar balance actualizado
                     loadRepositories();
                 }, 3000);
-                
+
             } catch (error) {
                 console.error('❌ Error en depósito:', error);
-                
+
                 const statusDiv = document.getElementById('depositStatus');
                 const depositBtn = document.getElementById('depositBtn');
-                
+
                 // Mensajes de error más específicos y útiles
                 let errorMessage = 'Error desconocido';
-                
+
                 if (error.code === -32080) {
                     errorMessage = '🌐 Error de conectividad RPC. Verifica tu conexión de red e intenta nuevamente. Ejecuta showRPCHelp() en consola para más ayuda.';
                 } else if (error.code === 4001) {
@@ -2258,15 +2305,15 @@
                 } else {
                     errorMessage = `❌ ${error.message || 'Error en la transacción de depósito'}`;
                 }
-                
+
                 statusDiv.textContent = errorMessage;
                 statusDiv.className = 'status-message status-error';
                 statusDiv.style.display = 'block';
-                
+
                 // Rehabilitar botón
                 depositBtn.disabled = false;
                 depositBtn.innerHTML = '💰 Depositar ETH';
-                
+
                 // Agregar botón de reintento para errores de conectividad
                 if (error.code === -32080) {
                     const retryBtn = document.createElement('button');
@@ -2289,13 +2336,13 @@
         // Mostrar modal de commits
         async function showCommitsModal(tokenId, repoName) {
             console.log(`✅ Abriendo modal de commits para: ${repoName} (Token: ${tokenId})`);
-            
+
             currentCommitsTokenId = tokenId;
-            
+
             // Actualizar información en el modal
             document.getElementById('commitsRepoName').textContent = repoName;
             document.getElementById('commitsTokenId').textContent = tokenId;
-            
+
             // Mostrar cuenta actual
             const accountInfo = window.blockHubWeb3?.getAccountInfo();
             if (accountInfo && accountInfo.account) {
@@ -2303,14 +2350,14 @@
             } else {
                 document.getElementById('commitsAccount').textContent = 'No conectado';
             }
-            
+
             // Limpiar estado
             const statusDiv = document.getElementById('commitsStatus');
             statusDiv.style.display = 'none';
-            
+
             // Mostrar modal y cargar commits
             document.getElementById('commitsModal').style.display = 'block';
-            
+
             // Cargar lista de commits
             await loadCommitsList(tokenId);
         }
@@ -2325,24 +2372,24 @@
         async function loadCommitsList(tokenId) {
             const commitsList = document.getElementById('commitsList');
             const statusDiv = document.getElementById('commitsStatus');
-            
+
             try {
                 commitsList.innerHTML = '<div class="loading-message">🔄 Cargando commits...</div>';
-                
+
                 console.log(`📋 Cargando commits para repositorio ${tokenId}...`);
-                
+
                 // Verificar conexión
                 if (!window.blockHubWeb3 || !window.blockHubWeb3.repoFactoryContract) {
                     throw new Error('Web3 no conectado o contrato no disponible');
                 }
-                
+
                 // Llamar retrieveCommits del contrato
                 console.log('📞 Llamando retrieveCommits del contrato...');
                 const commitsData = await window.blockHubWeb3.repoFactoryContract.retrieveCommits(tokenId);
                 console.log('📥 Datos de commits recibidos (RAW):', commitsData);
                 console.log('📊 Tipo de datos:', typeof commitsData);
                 console.log('📏 Longitud del resultado:', commitsData.length);
-                
+
                 // Debug detallado de cada elemento
                 if (Array.isArray(commitsData)) {
                     commitsData.forEach((item, index) => {
@@ -2353,31 +2400,31 @@
                         });
                     });
                 }
-                
+
                 // Destructurar los 5 arrays que devuelve retrieveCommits (incluyendo commitCID)
                 if (commitsData.length !== 5) {
                     throw new Error(`retrieveCommits devolvió ${commitsData.length} arrays, se esperaban exactamente 5: [messages, timestamps, committers, status, commitCID]`);
                 }
-                
+
                 const [messages, timestamps, committers, statuses, commitCIDs] = commitsData;
-                
+
                 console.log('📋 Arrays destructurados correctamente:', {
                     messages: messages ? messages.length : 'null',
-                    timestamps: timestamps ? timestamps.length : 'null', 
+                    timestamps: timestamps ? timestamps.length : 'null',
                     committers: committers ? committers.length : 'null',
                     statuses: statuses ? statuses.length : 'null',
                     commitCIDs: commitCIDs ? commitCIDs.length : 'null'
                 });
-                
+
                 console.log('✅ ÉXITO: retrieveCommits SÍ devuelve CIDs individuales como 5º parámetro');
-                
+
                 // Debug adicional de commitCIDs 
                 console.log('🔍 Debug detallado de commitCIDs:');
                 console.log('  commitCIDs existe:', !!commitCIDs);
                 console.log('  commitCIDs es array:', Array.isArray(commitCIDs));
                 console.log('  commitCIDs length:', commitCIDs ? commitCIDs.length : 'null');
                 console.log('  commitCIDs valor completo:', commitCIDs);
-                
+
                 if (commitCIDs && commitCIDs.length > 0) {
                     console.log('🔍 CommitCIDs encontrados:');
                     commitCIDs.forEach((cid, index) => {
@@ -2392,14 +2439,14 @@
                 } else {
                     console.log('📭 No hay commitCIDs en la respuesta o array vacío');
                 }
-                
+
                 // Convertir a formato manejable
                 const commits = [];
                 for (let i = 0; i < messages.length; i++) {
                     const status = parseInt(statuses[i].toString());
                     const timestamp = parseInt(timestamps[i].toString());
                     const rawCid = commitCIDs ? commitCIDs[i] : undefined;
-                    
+
                     // Debug detallado para cada commit
                     console.log(`🔍 Procesando commit ${i}:`, {
                         rawCid: rawCid,
@@ -2409,15 +2456,15 @@
                         cidLength: rawCid ? rawCid.length : 0,
                         cidIsEmpty: rawCid === '' || rawCid === '0x' || rawCid === '0x0'
                     });
-                    
+
                     // Filtrar CIDs vacíos o inválidos
                     let finalCid = null;
                     if (rawCid && rawCid !== '' && rawCid !== '0x' && rawCid !== '0x0' && rawCid.length > 10) {
                         finalCid = rawCid.toString();
                     }
-                    
+
                     console.log(`  ➡️ CID final para commit ${i}:`, finalCid);
-                    
+
                     commits.push({
                         index: i,
                         message: messages[i],
@@ -2429,19 +2476,19 @@
                         cid: finalCid  // ✅ CID procesado y validado
                     });
                 }
-                
+
                 console.log(`📋 Total commits encontrados: ${commits.length}`);
                 console.log('📊 Commits:', commits);
-                
+
                 // Filtrar solo commits pendientes para aprobación
                 const pendingCommits = commits.filter(c => c.status === 0);
                 console.log(`⏳ Commits pendientes: ${pendingCommits.length}`);
-                
+
                 if (pendingCommits.length === 0) {
                     commitsList.innerHTML = '<div class="no-commits-message">📭 No hay commits pendientes de aprobación</div>';
                     return;
                 }
-                
+
                 // Debug antes de renderizar
                 console.log('🎨 Renderizando commits, debug de CIDs:');
                 pendingCommits.forEach((commit, index) => {
@@ -2453,7 +2500,7 @@
                         cidDisplay: commit.cid ? commit.cid.substring(0, 12) + '...' : 'Sin CID'
                     });
                 });
-                
+
                 // Renderizar commits pendientes
                 const commitsHtml = pendingCommits.map(commit => `
                     <div class="commit-item">
@@ -2483,13 +2530,13 @@
                         </div>
                     </div>
                 `).join('');
-                
+
                 commitsList.innerHTML = commitsHtml;
-                
+
             } catch (error) {
                 console.error('❌ Error cargando commits:', error);
                 commitsList.innerHTML = '<div class="loading-message">❌ Error cargando commits</div>';
-                
+
                 statusDiv.textContent = `❌ Error: ${error.message}`;
                 statusDiv.className = 'status-message status-error';
                 statusDiv.style.display = 'block';
@@ -2502,105 +2549,105 @@
                 if (!currentCommitsTokenId) {
                     throw new Error('Token ID no válido');
                 }
-                
+
                 const rewardInput = document.getElementById(`reward_${commitIndex}`);
                 const reward = parseFloat(rewardInput.value);
-                
+
                 if (!reward || reward <= 0) {
                     throw new Error('Recompensa debe ser mayor a 0');
                 }
-                
+
                 if (reward < 0.0001) {
                     throw new Error('Recompensa mínima: 0.0001 ETH');
                 }
-                
+
                 console.log(`✅ Aprobando commit ${commitIndex} con recompensa ${reward} ETH...`);
-                
+
                 const statusDiv = document.getElementById('commitsStatus');
                 statusDiv.textContent = '⏳ Procesando aprobación...';
                 statusDiv.className = 'status-message status-info';
                 statusDiv.style.display = 'block';
-                
+
                 // Verificar conexión
                 if (!window.blockHubWeb3 || !window.blockHubWeb3.repoFactoryContract) {
                     throw new Error('Web3 no conectado o contrato no disponible');
                 }
-                
+
                 // Llamar approveCommit con manejo de errores mejorado
                 const weiReward = window.ethers.utils.parseEther(reward.toString());
                 console.log(`💰 Enviando recompensa: ${reward} ETH (${weiReward.toString()} Wei)`);
-                
+
                 let tx;
                 let retryCount = 0;
                 const maxRetries = 3;
-                
+
                 while (retryCount < maxRetries) {
                     try {
-                        statusDiv.textContent = retryCount > 0 ? 
+                        statusDiv.textContent = retryCount > 0 ?
                             `🔄 Reintentando transacción... (${retryCount + 1}/${maxRetries})` :
                             '📤 Enviando transacción...';
-                        
+
                         tx = await window.blockHubWeb3.repoFactoryContract.approveCommit(
-                    currentCommitsTokenId,
-                    commitIndex,
-                    weiReward,
-                            { 
+                            currentCommitsTokenId,
+                            commitIndex,
+                            weiReward,
+                            {
                                 value: weiReward,
                                 gasLimit: 300000  // Gas límite específico para evitar errores
                             }
-                );
-                
-                console.log('⏳ Transacción enviada:', tx.hash);
+                        );
+
+                        console.log('⏳ Transacción enviada:', tx.hash);
                         break; // Salir del loop si la transacción fue exitosa
-                        
+
                     } catch (txError) {
                         retryCount++;
                         console.warn(`⚠️ Intento ${retryCount} falló:`, txError.message);
-                        
+
                         if (retryCount >= maxRetries) {
                             throw txError; // Lanzar el error después de todos los intentos
                         }
-                        
+
                         // Esperar antes del siguiente intento
                         await new Promise(resolve => setTimeout(resolve, 2000));
                     }
                 }
-                
+
                 statusDiv.textContent = `⏳ Esperando confirmación... TX: ${tx.hash.substring(0, 10)}...`;
-                
+
                 const receipt = await tx.wait();
                 console.log('✅ Commit aprobado:', receipt);
-                
+
                 // Buscar eventos
                 const approvedEvent = receipt.events?.find(e => e.event === 'approvedCommit');
                 const badgeEvents = receipt.events?.filter(e => e.event === 'BadgeMinted' || e.event === 'StatsUpdated');
-                
+
                 if (approvedEvent) {
                     console.log('🎉 Evento approvedCommit:', approvedEvent.args);
                 }
-                
+
                 if (badgeEvents && badgeEvents.length > 0) {
                     console.log('🏆 Badges otorgados:', badgeEvents);
                     statusDiv.textContent = `🎉 ¡Commit aprobado! Badges otorgados. TX: ${receipt.transactionHash}`;
                 } else {
                     statusDiv.textContent = `🎉 ¡Commit aprobado exitosamente! TX: ${receipt.transactionHash}`;
                 }
-                
+
                 statusDiv.className = 'status-message status-success';
-                
+
                 // Recargar lista de commits
                 setTimeout(() => {
                     loadCommitsList(currentCommitsTokenId);
                 }, 2000);
-                
+
             } catch (error) {
                 console.error('❌ Error aprobando commit:', error);
-                
+
                 const statusDiv = document.getElementById('commitsStatus');
-                
+
                 // Mensajes de error más específicos y útiles
                 let errorMessage = 'Error desconocido';
-                
+
                 if (error.code === -32080) {
                     errorMessage = '🌐 Error de conectividad RPC. Intenta cambiar de red y volver, o espera unos minutos. Ejecuta showRPCHelp() en consola para más ayuda.';
                 } else if (error.code === 4001) {
@@ -2614,11 +2661,11 @@
                 } else {
                     errorMessage = `❌ ${error.message || 'Error en la transacción'}`;
                 }
-                
+
                 statusDiv.textContent = errorMessage;
                 statusDiv.className = 'status-message status-error';
                 statusDiv.style.display = 'block';
-                
+
                 // Agregar botón de reintento para errores de conectividad
                 if (error.code === -32080) {
                     const retryBtn = document.createElement('button');
@@ -2640,53 +2687,53 @@
                 if (!currentCommitsTokenId) {
                     throw new Error('Token ID no válido');
                 }
-                
+
                 // Confirmar rechazo
                 if (!confirm(`¿Estás seguro de que quieres RECHAZAR el commit #${commitIndex}?\n\nEsta acción no se puede deshacer.`)) {
                     return;
                 }
-                
+
                 console.log(`🚫 Rechazando commit ${commitIndex}...`);
-                
+
                 const statusDiv = document.getElementById('commitsStatus');
                 statusDiv.textContent = '⏳ Procesando rechazo...';
                 statusDiv.className = 'status-message status-info';
                 statusDiv.style.display = 'block';
-                
+
                 // Verificar conexión
                 if (!window.blockHubWeb3 || !window.blockHubWeb3.repoFactoryContract) {
                     throw new Error('Web3 no conectado o contrato no disponible');
                 }
-                
+
                 // Llamar rejectCommit usando Ethers.js directamente
                 const tx = await window.blockHubWeb3.repoFactoryContract.rejectCommit(
                     currentCommitsTokenId,
                     commitIndex
                 );
-                
+
                 console.log('⏳ Transacción enviada:', tx.hash);
                 statusDiv.textContent = `⏳ Transacción enviada: ${tx.hash}`;
-                
+
                 const receipt = await tx.wait();
                 console.log('✅ Commit rechazado:', receipt);
-                
+
                 // Buscar evento rejectedCommit
                 const rejectedEvent = receipt.events?.find(e => e.event === 'rejectedCommit');
                 if (rejectedEvent) {
                     console.log('🚫 Evento rejectedCommit:', rejectedEvent.args);
                 }
-                
+
                 statusDiv.textContent = `🚫 ¡Commit rechazado exitosamente! TX: ${receipt.transactionHash}`;
                 statusDiv.className = 'status-message status-error';
-                
+
                 // Recargar lista de commits
                 setTimeout(() => {
                     loadCommitsList(currentCommitsTokenId);
                 }, 2000);
-                
+
             } catch (error) {
                 console.error('❌ Error rechazando commit:', error);
-                
+
                 const statusDiv = document.getElementById('commitsStatus');
                 statusDiv.textContent = `❌ Error: ${error.message}`;
                 statusDiv.className = 'status-message status-error';
@@ -2702,11 +2749,11 @@
         }
 
         // Cerrar modal al hacer clic fuera
-        window.onclick = function(event) {
+        window.onclick = function (event) {
             const editModal = document.getElementById('editModal');
             const depositModal = document.getElementById('depositModal');
             const commitsModal = document.getElementById('commitsModal');
-            
+
             if (event.target === editModal) {
                 closeEditModal();
             } else if (event.target === depositModal) {
@@ -2720,7 +2767,7 @@
         console.log('   Ejecuta: await debugContract() en la consola para verificar el contrato');
 
         // Navbar background effect on scroll
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', function () {
             const navbar = document.querySelector('.navbar');
             if (window.scrollY > 100) {
                 navbar.style.background = 'rgba(0, 0, 0, 0.3)';
@@ -2730,7 +2777,7 @@
         });
 
         // Función para mostrar consejos sobre problemas RPC
-        window.showRPCHelp = function() {
+        window.showRPCHelp = function () {
             const helpMessage = `
 🌐 PROBLEMAS DE CONECTIVIDAD RPC - SOLUCIONES:
 
@@ -2756,7 +2803,7 @@
 
 ¿Sigues teniendo problemas? Intenta cerrar y abrir MetaMask.
             `;
-            
+
             alert(helpMessage);
         };
 
@@ -2767,7 +2814,7 @@
     <div id="depositModal" class="modal deposit-modal">
         <div class="modal-content">
             <span class="close" onclick="closeDepositModal()">&times;</span>
-            
+
             <div class="deposit-header">
                 <h2>💰 Depositar ETH</h2>
                 <div class="deposit-subtitle">Financia recompensas para colaboradores</div>
@@ -2778,21 +2825,22 @@
                     <label>📂 Repositorio</label>
                     <div id="depositRepoName" class="info-field"></div>
                 </div>
-                
+
                 <div class="form-group">
                     <label>🔢 Token ID</label>
                     <div id="depositTokenId" class="info-field"></div>
                 </div>
-                
+
                 <div class="form-group">
                     <label>💳 Tu Cuenta</label>
                     <div id="depositAccount" class="info-field"></div>
                 </div>
-                
+
                 <div class="form-group">
                     <label for="ethAmount">💰 Cantidad a Depositar</label>
                     <div class="deposit-amount-group">
-                        <input type="number" id="ethAmount" class="form-input" step="0.0001" min="0.0001" placeholder="0.001" required>
+                        <input type="number" id="ethAmount" class="form-input" step="0.0001" min="0.0001"
+                            placeholder="0.001" required>
                         <span class="eth-symbol">ETH</span>
                     </div>
                     <div class="quick-amounts">
@@ -2801,11 +2849,12 @@
                         <span class="quick-amount" onclick="setQuickAmount(0.1)">0.1 ETH</span>
                         <span class="quick-amount" onclick="setQuickAmount(1)">1 ETH</span>
                     </div>
-                    <small class="form-hint">💡 Mínimo: 0.0001 ETH. Estos fondos se usarán para recompensar commits aprobados</small>
+                    <small class="form-hint">💡 Mínimo: 0.0001 ETH. Estos fondos se usarán para recompensar commits
+                        aprobados</small>
                 </div>
-                
+
                 <div id="depositStatus" class="status-message" style="display: none;"></div>
-                
+
                 <div class="form-actions">
                     <button type="button" class="btn btn-secondary" onclick="closeDepositModal()">
                         ❌ Cancelar
@@ -2828,24 +2877,24 @@
                     <label>📂 Repositorio:</label>
                     <div id="commitsRepoName" class="info-field"></div>
                 </div>
-                
+
                 <div class="form-group">
                     <label>🔢 Token ID:</label>
                     <div id="commitsTokenId" class="info-field"></div>
                 </div>
-                
+
                 <div class="form-group">
                     <label>💳 Tu cuenta (Dueño):</label>
                     <div id="commitsAccount" class="info-field"></div>
                 </div>
-                
+
                 <div class="form-group">
                     <label>📋 Commits Pendientes:</label>
                     <div id="commitsList" class="commits-list">
                         <div class="loading-message">🔄 Cargando commits...</div>
                     </div>
                 </div>
-                
+
                 <div class="form-actions">
                     <button type="button" class="btn btn-secondary" onclick="closeCommitsModal()">
                         ❌ Cerrar
@@ -2854,11 +2903,12 @@
                         🔄 Actualizar Lista
                     </button>
                 </div>
-                
+
                 <div id="commitsStatus" class="status-message" style="display: none;"></div>
             </div>
         </div>
     </div>
 
 </body>
+
 </html>

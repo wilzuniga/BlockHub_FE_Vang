@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BlockHub - Repositorio de Código Descentralizado</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+        rel="stylesheet">
     <style>
-
         /* Hero Graphics */
         .hero-graphic {
             position: relative;
@@ -17,8 +18,13 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         .block-element {
@@ -129,32 +135,45 @@
         }
 
         @keyframes blockFloat {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+            }
         }
 
         @keyframes connectionPulse {
-            0%, 100% { 
-                opacity: 0.6; 
+
+            0%,
+            100% {
+                opacity: 0.6;
                 box-shadow: 0 0 5px rgba(144, 242, 9, 0.3);
             }
-            50% { 
-                opacity: 1; 
+
+            50% {
+                opacity: 1;
                 box-shadow: 0 0 15px rgba(144, 242, 9, 0.6);
             }
         }
 
         @keyframes nodeGlow {
-            0%, 100% { 
+
+            0%,
+            100% {
                 transform: scale(1);
                 box-shadow: 0 0 15px rgba(144, 242, 9, 0.6);
             }
-            50% { 
+
+            50% {
                 transform: scale(1.3);
                 box-shadow: 0 0 25px rgba(144, 242, 9, 0.8);
             }
         }
-        
+
         * {
             margin: 0;
             padding: 0;
@@ -266,33 +285,55 @@
         }
 
         @keyframes bgCubeFloat {
-            0%, 100% { 
+
+            0%,
+            100% {
                 transform: translateY(0px) rotate(0deg) scale(1);
                 opacity: 0.4;
             }
-            25% { 
+
+            25% {
                 transform: translateY(-15px) rotate(45deg) scale(1.1);
                 opacity: 0.6;
             }
-            50% { 
+
+            50% {
                 transform: translateY(-30px) rotate(90deg) scale(0.9);
                 opacity: 0.3;
             }
-            75% { 
+
+            75% {
                 transform: translateY(-15px) rotate(135deg) scale(1.05);
                 opacity: 0.5;
             }
         }
 
         @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
         }
 
         @keyframes float {
-            0%, 100% { transform: translate(0px, 0px) rotate(0deg); }
-            33% { transform: translate(30px, -30px) rotate(120deg); }
-            66% { transform: translate(-20px, 20px) rotate(240deg); }
+
+            0%,
+            100% {
+                transform: translate(0px, 0px) rotate(0deg);
+            }
+
+            33% {
+                transform: translate(30px, -30px) rotate(120deg);
+            }
+
+            66% {
+                transform: translate(-20px, 20px) rotate(240deg);
+            }
         }
 
         /* Glassmorphism Components */
@@ -327,8 +368,15 @@
         }
 
         @keyframes slideDown {
-            from { transform: translateX(-50%) translateY(-100px); opacity: 0; }
-            to { transform: translateX(-50%) translateY(0); opacity: 1; }
+            from {
+                transform: translateX(-50%) translateY(-100px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(-50%) translateY(0);
+                opacity: 1;
+            }
         }
 
         .nav-container {
@@ -420,13 +468,27 @@
         }
 
         @keyframes logoFloat {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
         }
 
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(50px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .hero-title {
@@ -438,7 +500,7 @@
         }
 
         .highlight {
-            background:var(--secondary-color);
+            background: var(--secondary-color);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             position: relative;
@@ -496,8 +558,13 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         .block-element {
@@ -534,8 +601,15 @@
         }
 
         @keyframes blockFloat {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+            }
         }
 
         /* Sections */
@@ -841,8 +915,9 @@
             color: var(--text-muted);
         }
 
-                /* Responsive Design */
+        /* Responsive Design */
         @media (max-width: 1200px) {
+
             .features-grid,
             .collaborate-grid,
             .workflow-grid,
@@ -860,7 +935,7 @@
                 grid-template-columns: 1fr;
                 text-align: center;
             }
-            
+
             .hero-title {
                 font-size: 2.5rem;
             }
@@ -924,8 +999,9 @@
             transform: translateY(0);
         }
     </style>
-  </head>
-  <body>
+</head>
+
+<body>
     <div class="bg-animation">
         <div class="bg-cube"></div>
         <div class="bg-cube"></div>
@@ -956,16 +1032,21 @@
     <section id="home" class="hero">
         <div class="hero-container">
             <div class="hero-content">
-                <h1 class="hero-title">El Futuro del <span class="highlight">DESARROLLO OPEN SOURCE</span> es Descentralizado</h1>
-                <p class="hero-subtitle">BlockHub es un repositorio de código descentralizado Open Source construido en blockchain. Posee tu código, controla su destino y construye sin límites colaborativamente.</p>
+                <h1 class="hero-title">El Futuro del <span class="highlight">DESARROLLO OPEN SOURCE</span> es
+                    Descentralizado</h1>
+                <p class="hero-subtitle">BlockHub es un repositorio de código descentralizado Open Source construido en
+                    blockchain. Posee tu código, controla su destino y construye sin límites colaborativamente.</p>
                 <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 20px;">
-                    <a href="conectar-wallet.html" class="btn btn-primary" style="text-decoration: none; display: inline-block;">
+                    <a href="conectar-wallet.html" class="btn btn-primary"
+                        style="text-decoration: none; display: inline-block;">
                         🔗 Conectar Wallet
                     </a>
-                    <a href="editor-archivos.html" class="btn btn-secondary" style="text-decoration: none; display: inline-block; background: linear-gradient(45deg, var(--secondary-color), #00aa88); color: #000;">
+                    <a href="editor-archivos.html" class="btn btn-secondary"
+                        style="text-decoration: none; display: inline-block; background: linear-gradient(45deg, var(--secondary-color), #00aa88); color: #000;">
                         📝 Editor de Código
                     </a>
-                    <a href="colaboradores.html" class="btn btn-secondary" style="text-decoration: none; display: inline-block; background: linear-gradient(45deg, #00ffaa, #00aa88); color: #000;">
+                    <a href="colaboradores.html" class="btn btn-secondary"
+                        style="text-decoration: none; display: inline-block; background: linear-gradient(45deg, #00ffaa, #00aa88); color: #000;">
                         🤝 Colaboradores
                     </a>
                 </div>
@@ -989,22 +1070,26 @@
                 <div class="feature-card glass scroll-reveal">
                     <div class="feature-icon">🔐</div>
                     <h3>Verdadera Propiedad</h3>
-                    <p>Tus repositorios son NFTs en la blockchain. Realmente posees tu código y puedes transferir la propiedad sin problemas.</p>
+                    <p>Tus repositorios son NFTs en la blockchain. Realmente posees tu código y puedes transferir la
+                        propiedad sin problemas.</p>
                 </div>
                 <div class="feature-card glass scroll-reveal">
                     <div class="feature-icon">🌍</div>
                     <h3>Resistente a la Censura</h3>
-                    <p>Construido en infraestructura descentralizada que no puede ser cerrada o censurada por ninguna entidad.</p>
+                    <p>Construido en infraestructura descentralizada que no puede ser cerrada o censurada por ninguna
+                        entidad.</p>
                 </div>
                 <div class="feature-card glass scroll-reveal">
                     <div class="feature-icon">💰</div>
                     <h3>Monetiza Contribuciones</h3>
-                    <p>Gana recompensas por tus contribuciones a través de recompensas e incentivos impulsados por smart contracts.</p>
+                    <p>Gana recompensas por tus contribuciones a través de recompensas e incentivos impulsados por smart
+                        contracts.</p>
                 </div>
                 <div class="feature-card glass scroll-reveal">
                     <div class="feature-icon">⚡</div>
                     <h3>Historial Inmutable</h3>
-                    <p>Cada commit se registra permanentemente en la blockchain con prueba criptográfica de autenticidad.</p>
+                    <p>Cada commit se registra permanentemente en la blockchain con prueba criptográfica de
+                        autenticidad.</p>
                 </div>
             </div>
         </div>
@@ -1013,7 +1098,7 @@
     <!-- What Makes Us Different Section -->
     <section id="what-makes-us-different" class="hero">
         <div class="hero-container">
-            
+
             <div class="hero-image">
                 <div class="hero-graphic">
                     <div class="block-element"></div>
@@ -1024,7 +1109,10 @@
 
             <div class="hero-content">
                 <h1 class="hero-title">Qué Nos Hace <span class="highlight">DIFERENTES</span></h1>
-                <p class="hero-subtitle">En BlockHub nos aseguramos de la descentralización y protección de tu proyecto por medio del almacenamiento en IPFS, lo que asegura que tu proyecto permanezca accesible y seguro sin depender de servidores centralizados. Esto significa que tu código estará protegido contra la censura, caídas de servicio y pérdida de datos, garantizando su disponibilidad continua.</p>
+                <p class="hero-subtitle">En BlockHub nos aseguramos de la descentralización y protección de tu proyecto
+                    por medio del almacenamiento en IPFS, lo que asegura que tu proyecto permanezca accesible y seguro
+                    sin depender de servidores centralizados. Esto significa que tu código estará protegido contra la
+                    censura, caídas de servicio y pérdida de datos, garantizando su disponibilidad continua.</p>
 
             </div>
         </div>
@@ -1038,22 +1126,26 @@
                 <div class="collaborate-card glass scroll-reveal">
                     <div class="collaborate-icon">🤝</div>
                     <h3>Colaboración Recompensada</h3>
-                    <p>Gana recompensas por contribuir código a repositorios. Las bounties se basan en las líneas de código aportadas.</p>
+                    <p>Gana recompensas por contribuir código a repositorios. Las bounties se basan en las líneas de
+                        código aportadas.</p>
                 </div>
                 <div class="collaborate-card glass scroll-reveal">
                     <div class="collaborate-icon">⚠️</div>
                     <h3>El Problema del Open Source</h3>
-                    <p>Los proyectos open source carecen de financiamiento y reconocimiento, limitando su desarrollo y sostenibilidad.</p>
+                    <p>Los proyectos open source carecen de financiamiento y reconocimiento, limitando su desarrollo y
+                        sostenibilidad.</p>
                 </div>
                 <div class="collaborate-card glass scroll-reveal">
                     <div class="collaborate-icon">💡</div>
                     <h3>La Solución de BlockHub</h3>
-                    <p>Conectamos proyectos, donadores y desarrolladores usando blockchain. Los aportes en ETH generan recompensas automáticas por cada contribución.</p>
+                    <p>Conectamos proyectos, donadores y desarrolladores usando blockchain. Los aportes en ETH generan
+                        recompensas automáticas por cada contribución.</p>
                 </div>
                 <div class="collaborate-card glass scroll-reveal">
                     <div class="collaborate-icon">✨</div>
                     <h3>Beneficios para Todos</h3>
-                    <p>Facilitamos financiamiento sostenible para proyectos, transparencia para donadores y pagos inmediatos para desarrolladores.</p>
+                    <p>Facilitamos financiamiento sostenible para proyectos, transparencia para donadores y pagos
+                        inmediatos para desarrolladores.</p>
                 </div>
             </div>
         </div>
@@ -1068,22 +1160,26 @@
                 <div class="collaborate-card glass scroll-reveal">
                     <div class="collaborate-icon">📊</div>
                     <h3>El Problema de la Centralización</h3>
-                    <p>Aproximadamente un 75% de los desarrolladores a nivel mundial utilizan GitHub para el control de versiones, generando centralización peligrosa.</p>
+                    <p>Aproximadamente un 75% de los desarrolladores a nivel mundial utilizan GitHub para el control de
+                        versiones, generando centralización peligrosa.</p>
                 </div>
                 <div class="collaborate-card glass scroll-reveal">
                     <div class="collaborate-icon">🚫</div>
                     <h3>Riesgos de la Centralización</h3>
-                    <p>La centralización facilita la censura y crea diferentes complicaciones para acceder al código de manera libre y abierta.</p>
+                    <p>La centralización facilita la censura y crea diferentes complicaciones para acceder al código de
+                        manera libre y abierta.</p>
                 </div>
                 <div class="collaborate-card glass scroll-reveal">
                     <div class="collaborate-icon">🔓</div>
                     <h3>Código Transparente e Inmutable</h3>
-                    <p>En BlockHub nos enfocamos en hacer que el código sea transparente, descentralizado e inmutable para proteger a la comunidad.</p>
+                    <p>En BlockHub nos enfocamos en hacer que el código sea transparente, descentralizado e inmutable
+                        para proteger a la comunidad.</p>
                 </div>
                 <div class="collaborate-card glass scroll-reveal">
                     <div class="collaborate-icon">🌐</div>
                     <h3>Acceso Garantizado</h3>
-                    <p>Garantizamos el acceso libre y permanente al código, sin depender de servidores centralizados que puedan fallar o ser censurados.</p>
+                    <p>Garantizamos el acceso libre y permanente al código, sin depender de servidores centralizados que
+                        puedan fallar o ser censurados.</p>
                 </div>
             </div>
         </div>
@@ -1153,7 +1249,8 @@
             <div class="cta-content glass scroll-reveal">
                 <h2>¿Listo para Descentralizar tu Código?</h2>
                 <p>Únete a la revolución y toma el control de tu flujo de trabajo de desarrollo.</p>
-                <a href="conectar-wallet.html" class="btn btn-primary" style="text-decoration: none; display: inline-block;">Comenzar a Construir Ahora</a>
+                <a href="conectar-wallet.html" class="btn btn-primary"
+                    style="text-decoration: none; display: inline-block;">Comenzar a Construir Ahora</a>
             </div>
         </div>
     </section>
@@ -1169,7 +1266,7 @@
                     <h3>BlockHub</h3>
                     <p>Descentralizando repositorios Open Source, un commit a la vez.</p>
                 </div>
-        
+
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2025 BlockHub. Todos los derechos reservados.</p>
@@ -1181,12 +1278,12 @@
         // Scroll reveal animation
         function revealElements() {
             const reveals = document.querySelectorAll('.scroll-reveal');
-            
+
             for (let i = 0; i < reveals.length; i++) {
                 const windowHeight = window.innerHeight;
                 const elementTop = reveals[i].getBoundingClientRect().top;
                 const elementVisible = 150;
-                
+
                 if (elementTop < windowHeight - elementVisible) {
                     reveals[i].classList.add('revealed');
                 }
@@ -1196,7 +1293,7 @@
         window.addEventListener('scroll', revealElements);
 
         // Navbar background on scroll
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', function () {
             const navbar = document.querySelector('.navbar');
             if (window.scrollY > 100) {
                 navbar.style.background = 'rgba(0, 0, 0, 0.3)';
@@ -1221,7 +1318,7 @@
 
         // Button click animations
         document.querySelectorAll('.btn').forEach(button => {
-            button.addEventListener('click', function(e) {
+            button.addEventListener('click', function (e) {
                 let ripple = document.createElement('span');
                 ripple.classList.add('ripple');
                 this.appendChild(ripple);
@@ -1241,4 +1338,4 @@
         // Initial reveal on page load
         revealElements();
     </script>
-  </body>
+</body>

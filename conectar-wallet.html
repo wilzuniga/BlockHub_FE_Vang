@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conectar Wallet - BlockHub</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+        rel="stylesheet">
+
     <style>
         :root {
             --primary-color: #013EFB;
@@ -52,8 +54,15 @@
         }
 
         @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
         }
 
         /* Floating cubes animation */
@@ -95,19 +104,24 @@
         }
 
         @keyframes bgCubeFloat {
-            0%, 100% { 
+
+            0%,
+            100% {
                 transform: translateY(0px) rotate(0deg) scale(1);
                 opacity: 0.4;
             }
-            25% { 
+
+            25% {
                 transform: translateY(-15px) rotate(45deg) scale(1.1);
                 opacity: 0.6;
             }
-            50% { 
+
+            50% {
                 transform: translateY(-30px) rotate(90deg) scale(0.9);
                 opacity: 0.3;
             }
-            75% { 
+
+            75% {
                 transform: translateY(-15px) rotate(135deg) scale(1.05);
                 opacity: 0.5;
             }
@@ -145,8 +159,15 @@
         }
 
         @keyframes slideDown {
-            from { transform: translateX(-50%) translateY(-100px); opacity: 0; }
-            to { transform: translateX(-50%) translateY(0); opacity: 1; }
+            from {
+                transform: translateX(-50%) translateY(-100px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(-50%) translateY(0);
+                opacity: 1;
+            }
         }
 
         .nav-container {
@@ -221,8 +242,15 @@
         }
 
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(50px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .wallet-logo {
@@ -239,8 +267,15 @@
         }
 
         @keyframes logoFloat {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
         }
 
         .wallet-title {
@@ -406,7 +441,9 @@
         }
 
         @keyframes spin {
-            to { transform: rotate(360deg); }
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         /* Status Messages */
@@ -457,20 +494,20 @@
                 padding: 2rem 1rem;
                 margin: 1rem;
             }
-            
+
             .wallet-title {
                 font-size: 2rem;
             }
-            
+
             .btn {
                 width: 100%;
                 margin: 0.5rem 0;
             }
-            
+
             .nav-menu {
                 display: none;
             }
-            
+
             .navbar {
                 width: 95%;
                 padding: 12px 20px;
@@ -478,12 +515,13 @@
         }
     </style>
 </head>
+
 <body>
     <div class="bg-animation">
         <div class="bg-cube"></div>
         <div class="bg-cube"></div>
         <div class="bg-cube"></div>
-        </div>
+    </div>
 
     <!-- Navigation -->
     <nav class="navbar glass">
@@ -507,7 +545,8 @@
             </div>
 
             <h1 class="wallet-title">Conecta tu <span class="highlight">WALLET</span></h1>
-            <p class="wallet-subtitle">Conecta tu wallet de Ethereum para acceder a las funcionalidades de BlockHub y crear repositorios descentralizados.</p>
+            <p class="wallet-subtitle">Conecta tu wallet de Ethereum para acceder a las funcionalidades de BlockHub y
+                crear repositorios descentralizados.</p>
 
             <!-- Wallet Status Display -->
             <div class="wallet-status">
@@ -521,7 +560,7 @@
             </div>
 
             <!-- Status Messages -->
-                <div id="statusMessage" role="status" aria-live="polite" style="display: none;"></div>
+            <div id="statusMessage" role="status" aria-live="polite" style="display: none;"></div>
 
             <p class="wallet-helper-text">
                 Verifica que MetaMask o WalletConnect estén desbloqueados antes de continuar.
@@ -533,12 +572,8 @@
 
             <!-- Action Buttons -->
             <div class="action-buttons">
-                <button
-                    id="connectBtn"
-                    class="btn btn-primary"
-                    aria-label="Conectar tu wallet de Ethereum con MetaMask"
-                    title="Conecta tu wallet usando MetaMask"
-                >
+                <button id="connectBtn" class="btn btn-primary" aria-label="Conectar tu wallet de Ethereum con MetaMask"
+                    title="Conecta tu wallet usando MetaMask">
                     🦊 Conectar MetaMask
                 </button>
                 <button id="installBtn" class="btn btn-secondary" style="display: none;">
@@ -552,7 +587,7 @@
                 </button>
                 <button id="collaboratorsBtn" class="btn btn-secondary" onclick="goToCollaborators()">
                     🤝 Colaboradores
-                    </button>
+                </button>
             </div>
         </div>
     </div>
@@ -583,7 +618,7 @@
             statusMessage.innerHTML = message;
             statusMessage.className = `status-message status-${type}`;
             statusMessage.style.display = 'block';
-            
+
             if (type !== 'error') {
                 setTimeout(() => {
                     statusMessage.style.display = 'none';
@@ -601,15 +636,15 @@
                 // Ethereum Networks
                 '0x1': 'Ethereum Mainnet',
                 '0x3': 'Ropsten (Deprecated)',
-                '0x4': 'Rinkeby (Deprecated)', 
+                '0x4': 'Rinkeby (Deprecated)',
                 '0x5': 'Goerli Testnet',
-                
+
                 // Layer 2 Networks
                 '0x89': 'Polygon',
                 '0xa4b1': 'Arbitrum One',
                 '0xa': 'Optimism',
                 '0x66eee': 'Arbitrum Sepolia',
-                
+
                 // Other Networks
                 '0xa86a': 'Avalanche C-Chain',
                 '0x38': 'BSC (Binance Smart Chain)'
@@ -724,7 +759,7 @@
                     try {
                         await window.blockHubWeb3.initializeWeb3();
                         console.log('✅ BlockHub Web3 Service inicializado');
-            } catch (error) {
+                    } catch (error) {
                         console.warn('⚠️ Error inicializando BlockHub Service:', error.message);
                     }
                 }
@@ -740,7 +775,7 @@
 
             } catch (error) {
                 console.error('❌ Error conectando wallet:', error);
-                
+
                 if (error.code === 4001) {
                     showStatus('Conexión cancelada por el usuario', 'warning');
                 } else if (error.code === -32002) {
@@ -748,7 +783,7 @@
                 } else {
                     showStatus(`Error conectando: ${error.message}`, 'error');
                 }
-                
+
                 connectBtn.disabled = false;
                 connectBtn.innerHTML = '🦊 Conectar MetaMask';
             }
@@ -762,10 +797,10 @@
 
             try {
                 const accounts = await window.ethereum.request({ method: 'eth_accounts' });
-                
+
                 if (accounts.length > 0) {
                     console.log('🔄 Reconnectando a cuenta existente...');
-                    
+
                     web3 = new Web3(window.ethereum);
                     currentAccount = accounts[0];
                     isConnected = true;
@@ -794,7 +829,7 @@
             if (window.ethereum) {
                 window.ethereum.on('accountsChanged', (accounts) => {
                     console.log('🔄 Cuentas cambiadas:', accounts);
-                    
+
                     if (accounts.length === 0) {
                         // User disconnected
                         currentAccount = null;
@@ -850,10 +885,10 @@
         // Initialize on page load
         window.addEventListener('load', async () => {
             console.log('🚀 BlockHub Wallet Connect cargado');
-            
+
             checkMetaMaskInstallation();
             setupEventListeners();
-            
+
             // Check for existing connection after a brief delay
             setTimeout(() => {
                 checkExistingConnection();
@@ -863,32 +898,32 @@
         // Navigation function for collaborators
         function goToCollaborators() {
             console.log('🤝 Navegando a colaboradores.html...');
-            
+
             const routes = [
                 'colaboradores.html',
                 './colaboradores.html',
                 '../colaboradores.html',
                 '/colaboradores.html'
             ];
-            
+
             // Intentar cada ruta
             function tryRoute(index) {
                 if (index >= routes.length) {
                     showStatus('❌ No se pudo encontrar la página de colaboradores', 'error');
-                return;
-            }
-            
+                    return;
+                }
+
                 const route = routes[index];
                 console.log(`🔍 Probando ruta: ${route}`);
-                
+
                 try {
                     window.location.href = route;
-            } catch (error) {
+                } catch (error) {
                     console.log(`❌ Error con ruta ${route}:`, error.message);
                     tryRoute(index + 1);
                 }
             }
-            
+
             tryRoute(0);
         }
 
@@ -899,7 +934,7 @@
         window.goToCollaborators = goToCollaborators;
 
         // Navbar background effect on scroll
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', function () {
             const navbar = document.querySelector('.navbar');
             if (window.scrollY > 100) {
                 navbar.style.background = 'rgba(0, 0, 0, 0.3)';
@@ -909,4 +944,5 @@
         });
     </script>
 </body>
+
 </html>
